@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+version = '1.0'
+
+// Uses JDK 7
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
+// 1. Get dependencies from Maven local repository
+// 2. Get dependencies from Maven central repository
+repositories {
+	mavenLocal()
+    mavenCentral()
+}
+
+//Project dependencies
+dependencies {
+	compile 'ch.qos.logback:logback-classic:1.1.2'
+	compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+	compile 'jstl:jstl:1.2'
+	//include in compile only, exclude in the war
+	providedCompile 'javax.servlet:servlet-api:2.5'
+}
