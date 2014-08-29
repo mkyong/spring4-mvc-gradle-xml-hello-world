@@ -1,8 +1,16 @@
-gradle-spring-mvc-web-project
-=============================
-
-A templete for Gradle - Spring MVC web project.
+Gradle - Spring MVC web Project
+===============================
 
 This project is tested under following technologies :
-Gradle 2.0
-Spring 4.0.6.RELEASE
+* Gradle 2.0
+* Spring 4.0.6.RELEASE
+
+Steps to import this project into Eclipse IDE :
+
+1. Run this 'gradle eclipse' , to convert the project into a Eclipse project. 
+2. Import into Eclipse, and start coding. 
+3. Done.
+
+h3. Project Demo
+Please refer to this [Gradle - Spring MVC Web Project](http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-example/)
+
