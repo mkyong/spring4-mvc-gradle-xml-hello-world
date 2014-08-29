@@ -1,4 +1,8 @@
 gradle-spring-mvc-web-project
 =============================
 
-Template for Spring MVC Hello World , using Gradle as build tool.
+A templete for Gradle - Spring MVC web project.
+
+This project is tested under following technologies :
+Gradle 2.0
+Spring 4.0.6.RELEASE
