@@ -1,17 +1,24 @@
-Gradle - Spring 4 MVC Hello World Example (XML Configuration)
+Gradle - Spring 4 MVC Hello World
 ===============================
-Template for a Spring 4 MVC project, using Gradle build tool.
+Template for a Spring 4 MVC project + JSP view, using Gradle build tool.
+
+#####To Run this project
+* console$ git clone https://github.com/spring-projects/spring-petclinic.git
+* console$ gradle jettyRun
+
+Access http://localhost:8080/spring4
 
 #####This project is tested under following technologies :
 * Gradle 2.0
-* Spring 4.0.6.RELEASE
+* Spring Spring 4.1.6.RELEASE
+* Logback 1.1.3
+* Boostrap 3
 
-#####Steps to import this project into Eclipse IDE :
-
-1. Run this `gradle eclipse` , to convert the project into a Eclipse project. 
-2. Import into Eclipse, and start coding. 
-3. Done.
+#####To import this project into Eclipse IDE :
+* console$ gradle eclipse
+* Import into Eclipse via existing project option.
+* Done.
 
 #####Project Demo
-Please refer to this [Gradle - Spring MVC Web Project](http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-example/)
+Please refer to this [Gradle - Spring 4 MVC Hello World ](http://www.mkyong.com/spring-mvc/gradle-spring-mvc-web-project-example/)
 
