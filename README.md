@@ -1,6 +1,6 @@
-Gradle - Spring MVC web Project
+Gradle - Spring 4 MVC Hello World Example (XML Configuration)
 ===============================
-Template for a Spring MVC project, using Gradle build tool.
+Template for a Spring 4 MVC project, using Gradle build tool.
 
 #####This project is tested under following technologies :
 * Gradle 2.0
