@@ -4,7 +4,7 @@ Template for Spring 4 MVC + JSP view + XML configuration, using Gradle build too
 
 ###1. Technologies used
 * Gradle 2.0
-* Spring Spring 4.1.6.RELEASE
+* Spring 4.1.6.RELEASE
 * JSTL 1.2
 * Logback 1.1.3
 * Boostrap 3
