@@ -1,0 +1,11 @@
+@CHARSET "EUC-KR";
+td{text-align: center;}
+th{text-align: center;}
+ 
+a:link{ text-decoration:none;    color: #5D5D5D;}
+a:visited{ text-decoration:none; color: #5D5D5D;}
+a:active{ text-decoration:none;  color: #47C83E;}
+a:hover{ text-decoration:none;   color: #47C83E;}
+.listTable{width:600px;}
+#boardListCount{text-align: right;}
+#boardList_a{font-weight: bold; color:#8041D9;}

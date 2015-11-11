@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.user">
+	<!-- http://installed.tistory.com/entry/SPRING30-11%EA%B2%8C%EC%8B%9C%ED%8C%90 -->
+
+	<!-- 전체  행 갯수 구하기 -->
+	<select
+		id="ListCount"
+		resultType="int"
+		parameterType="hashmap">
+		select
+		NVL(count(1),0) <!-- value가 null 일경우 0을 반환, 아닐경우1 -->
+		from defult_user
+		<where>
+			<if test="id!=null and id!=''">
+				or u_id like '%'||#{id}||'%'
+			</if>
+			<if test="nick!=null and nick!=''">
+				or u_nick like '%'||#{nick}||'%'
+			</if>
+			<if test="all!=null and all!=''">
+				or u_id like '%'||#{all}||'%'
+				or u_nick like
+				'%'||#{all}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<select
+		id="List"
+		parameterType="hashmap"
+		resultType="UserVO">
+		select *
+		from (select
+		rownum rnum,
+		u.*
+		from ( select
+		u_no,
+		u_id,
+		u_pw,
+		u_nick,
+		u_indate,
+		u_delete,
+		u_eddate
+		from defult_user
+		<where>
+			<if test="id!=null and id!=''">
+				or u_id like '%'||#{id}||'%'
+			</if>
+			<if test="nick!=null and nick!=''">
+				or u_nick like '%'||#{nick}||'%'
+			</if>
+			<if test="all!=null and all!=''">
+				or u_id like '%'||#{all}||'%'
+				or u_nick like
+				'%'||#{all}||'%'
+			</if>
+		</where>
+		order by u_no
+		desc) u)
+    <![CDATA[
+         where rnum >= #{startNum}
+           and rnum <= #{endNum}
+         ]]>
+	</select>
+
+	<insert
+		id="Insert"
+		parameterType="UserVO">
+		insert into
+		defult_user (
+		u_id
+		, u_pw
+		, u_nick
+		) values (
+		#{u_id }
+		, #{u_pw }
+		, #{u_nick}
+		)
+	</insert>
+
+	<update
+		id="Update"
+		parameterType="UserVO">
+		update defult_user
+		set
+		u_pw = #{u_pw}
+		, u_nick = #{u_nick}
+		, u_delete = #{u_delete}
+		where u_no =
+		#{u_no }
+		and u_id = #{u_id }
+		and
+		u_pw = #{u_pw }
+		and u_nick = #{u_nick }
+		and u_delete =0
+	</update>
+</mapper>
