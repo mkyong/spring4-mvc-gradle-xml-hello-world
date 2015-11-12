@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd ">
  
-	<context:component-scan base-package="com.mkyong.helloworld.web" />
+	<context:component-scan base-package="com.mkyong.helloworld" />
 	
  
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
