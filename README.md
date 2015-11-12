@@ -1,3 +1,7 @@
+=== ===
+어떤 jar 파일이 누락 되었음
+뭔지는 모름
+=== ===
 /spring4-mvc-gradle-xml-hello-world/src/main/webapp/WEB-INF/views/jsp/index.jsp
 파일에서
 The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path
