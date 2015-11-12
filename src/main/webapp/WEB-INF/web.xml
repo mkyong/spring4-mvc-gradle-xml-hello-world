@@ -39,10 +39,10 @@
 	</filter-mapping>
 
 
-	<context-param>
+<!-- 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring-core-config.xml</param-value>
-	</context-param>
+	</context-param> -->
 	
 
 	<context-param>

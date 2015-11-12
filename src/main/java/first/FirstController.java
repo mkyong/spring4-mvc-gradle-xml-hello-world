@@ -151,6 +151,7 @@ public class FirstController {
 		ModelAndView mv = new ModelAndView("boardUpdate");
 
 		Map<String, Object> map = service.selectBoardDetail(commandMap.getMap());
+		
 		mv.addObject("map", map.get("map"));
 		if (!UtilsEmpty.isEmpty(map.get("list")))
 			mv.addObject("list", map.get("list"));
@@ -159,10 +160,10 @@ public class FirstController {
 	}
 
 	@RequestMapping(value = "/updateBoard", method = RequestMethod.POST)
-	public ModelAndView updateBoard(CommandMap commandMap) throws Exception {
+	public ModelAndView updateBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:openBoardDetail");
 
-		service.updateBoard(commandMap.getMap());
+		service.updateBoard(commandMap.getMap(), request);
 
 		mv.addObject("IDX", commandMap.get("IDX"));
 		return mv;

@@ -55,6 +55,7 @@ public class FirstService {
 		dao.updateHitCnt(map);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
 		// 기존 상세글
 		Map<String, Object> tempMap = dao.selectBoardDetail(map);
 		resultMap.put("map", tempMap);
@@ -70,8 +71,25 @@ public class FirstService {
 		return resultMap;
 	}
 
-	public void updateBoard(Map<String, Object> map) throws Exception {
-		dao.updateBoard(map);
+	public void updateBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		
+		dao.updateBoard(map);//게시판 내용 업데이트
+		
+		dao.deleteFileList(map);//현재 등록됬던 파일들 DEL_GB = 'Y' 처리 
+		
+	    List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+	    
+	    Map<String,Object> tempMap = null;
+	    
+	    for(int i=0, size=list.size(); i<size; i++){
+	        tempMap = list.get(i);
+	        if(tempMap.get("IS_NEW").equals("Y")){
+	            dao.insertFile(tempMap);
+	        }
+	        else{
+	            dao.updateFile(tempMap);
+	        }
+	    }
 	}
 
 	public void deleteBoard(Map<String, Object> map) throws Exception {
