@@ -45,10 +45,10 @@ public class FirstDAO extends AbstractDAO {
 	}
 
 	public void deleteFileList(Map<String, Object> map) throws Exception{
-	    update("sample.deleteFileList", map);
+	    update("First.deleteFileList", map);
 	}
 	 
 	public void updateFile(Map<String, Object> map) throws Exception{
-	    update("sample.updateFile", map);
+	    update("First.updateFile", map);
 	}
 }

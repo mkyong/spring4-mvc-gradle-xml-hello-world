@@ -77,6 +77,7 @@ public class FirstService {
 		
 		dao.deleteFileList(map);//현재 등록됬던 파일들 DEL_GB = 'Y' 처리 
 		
+		//기존파일,새파일 분류 작업. 새파일은 저장.
 	    List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, request);
 	    
 	    Map<String,Object> tempMap = null;
