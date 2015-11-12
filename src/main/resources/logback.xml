@@ -10,7 +10,28 @@
 			</Pattern>
 		</layout>
 	</appender>
-	
+	<appender
+		name="sqlonly"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	<appender
+		name="resultsettable"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	<logger name="org.springframework" level="info" 
+                additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
 	<logger
 		name="com.mkyong.helloworld"
 		level="info"
@@ -22,13 +43,13 @@
 		name="jdbc.sqlonly"
 		additivity="false">
 		<level value="INFO" />
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="sqlonly" />
 	</logger>
 	<logger
 		name="jdbc.resultsettable"
 		additivity="false">
 		<level value="INFO" />
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="resultsettable" />
 	</logger>
 
 	<root level="off">
