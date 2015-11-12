@@ -34,6 +34,7 @@
 			<tr>
 				<td colspan="4">${map.CONTENTS }</td>
 			</tr>
+			<c:if test="${list!=null }">
 			<tr>
 				<th scope="row">첨부파일</th>
 				<td colspan="3"><c:forEach var="row" items="${list }">
@@ -44,6 +45,7 @@
 						</p>
 					</c:forEach></td>
 			</tr>
+			</c:if>
 		</tbody>
 	</table>
 	<br />

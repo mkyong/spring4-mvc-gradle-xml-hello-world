@@ -6,7 +6,7 @@
 		class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>
-				%5level %logger{36} - %msg%n
+				%-5level %logger - %msg%n
 			</Pattern>
 		</layout>
 	</appender>
@@ -28,17 +28,69 @@
 			</Pattern>
 		</layout>
 	</appender>
-	<logger name="org.springframework" level="info" 
-                additivity="false">
+	<appender
+		name="console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	<logger
+		name="org.springframework"
+		level="info"
+		additivity="true">
 		<appender-ref ref="STDOUT" />
 	</logger>
 	<logger
 		name="com.mkyong.helloworld"
 		level="info"
-		additivity="false">
+		additivity="true">
 		<appender-ref ref="STDOUT" />
 	</logger>
-
+	<logger
+		name="common"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
+		name="sample"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
+		name="defult"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
+		name="board2"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
+		name="board"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
+		name="scott"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
+		name="first"
+		additivity="true">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
 	<logger
 		name="jdbc.sqlonly"
 		additivity="false">

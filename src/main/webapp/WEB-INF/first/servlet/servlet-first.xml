@@ -81,6 +81,22 @@
 			value="100000000" />
 	</beans:bean>
 
+	<!-- 전자정부 페이징 설정 -->
+	<beans:bean
+		id="textRenderer"
+		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
+	<beans:bean
+		id="paginationManager"
+		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+		<beans:property name="rendererType">
+			<beans:map>
+				<beans:entry
+					key="text"
+					value-ref="textRenderer" />
+			</beans:map>
+		</beans:property>
+	</beans:bean>
+
 	<context:component-scan base-package="first" />
 	<context:component-scan base-package="common" />
 

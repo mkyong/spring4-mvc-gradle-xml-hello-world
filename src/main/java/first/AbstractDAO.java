@@ -12,7 +12,7 @@ public class AbstractDAO {
 	protected Log log = LogFactory.getLog(AbstractDAO.class);
 
 	@Autowired
-	@Qualifier("defultTemplate")
+	@Qualifier("firstTemplate")
 	private SqlSessionTemplate sqlSession;
 
 	protected void printQueryId(String queryId) {
