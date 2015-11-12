@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -94,8 +95,25 @@ public class FirstController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/insertBoard", method = RequestMethod.POST)
-	public String insertBoard(CommandMap commandMap, HttpServletRequest request,RedirectAttributes redirect) throws Exception {
+	public String insertBoard(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirect) throws Exception {
 		//ModelAndView mv = new ModelAndView("redirect:openBoardList");
+		
+		//log.debug("TITLE:"+commandMap.get("TITLE"));
+		
+		if (UtilsEmpty.isEmpty(commandMap.get("TITLE"))) {
+			//response.sendRedirect("boardList");
+			//redirect.addFlashAttribute("CONTENTS", commandMap.get("CONTENTS"));
+			commandMap.redirect(redirect);
+			redirect.addFlashAttribute("msg", "TITLE 내용이 없습니다");
+			return "redirect:openBoardWrite";
+		}
+		if (UtilsEmpty.isEmpty(commandMap.get("CONTENTS"))) {
+			//response.sendRedirect("boardList");
+			//redirect.addFlashAttribute("TITLE", commandMap.get("TITLE"));
+			commandMap.redirect(redirect);
+			redirect.addFlashAttribute("msg", "CONTENTS 내용이 없습니다");
+			return "redirect:openBoardWrite";
+		}
 
 		List<Map<String, Object>> faillist=service.insertBoard(commandMap.getMap(), request);
 		

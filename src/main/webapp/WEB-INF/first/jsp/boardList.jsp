@@ -7,11 +7,11 @@
 <c:if test="${ csrfError!=null}">
 	<c:remove var="csrfError" />
 </c:if>
-<c:if test="${ msg!=null}">
+<%-- <c:if test="${ msg!=null}">
 	<script type="text/javascript">
 		alert("${msg}")
 	</script>
-</c:if>
+</c:if> --%>
 </head>
 <body>
 	<h2>게시판 목록</h2>

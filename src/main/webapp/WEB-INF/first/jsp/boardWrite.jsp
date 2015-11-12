@@ -17,11 +17,11 @@
 			<tbody>
 				<tr>
 					<th scope="row">제목</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90" value="${TITLE }"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="view_text"><textarea rows="20"
-							cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea></td>
+							cols="100" title="내용" id="CONTENTS" name="CONTENTS">${CONTENTS }</textarea></td>
 				</tr>
 			</tbody>
 		</table>

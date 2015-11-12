@@ -32,7 +32,7 @@
 	</appender>
 	<appender name="console-infolog" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} %5p:%m%n" />
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %5p:%m%n" />
 		</layout>
 	</appender>
 	<appender name="console-sql" class="org.apache.log4j.ConsoleAppender">
