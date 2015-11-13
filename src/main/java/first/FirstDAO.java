@@ -51,4 +51,8 @@ public class FirstDAO extends AbstractDAO {
 	public void updateFile(Map<String, Object> map) throws Exception{
 	    update("First.updateFile", map);
 	}
+
+	public Map<String, Object> selectBoardListPaging(Map<String, Object> map) throws Exception{
+	    return (Map<String, Object>)selectPagingList("First.selectBoardListPaging", map);
+	}
 }

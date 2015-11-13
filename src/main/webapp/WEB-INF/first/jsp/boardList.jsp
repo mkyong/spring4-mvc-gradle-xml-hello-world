@@ -86,6 +86,13 @@
 			comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
 			comSubmit.submit();
 		}
+		
+		function fn_search(pageNo){
+            var comSubmit = new ComSubmit();
+            comSubmit.setUrl("<c:url value='openBoardListPaging' />");
+            comSubmit.addParam("currentPageNo", pageNo);
+            comSubmit.submit();
+        }
 	</script>
 
 	<%@ include file="/debug/debug.jsp"%>

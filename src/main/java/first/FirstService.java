@@ -94,4 +94,9 @@ public class FirstService {
 	public void deleteBoard(Map<String, Object> map) throws Exception {
 		dao.deleteBoard(map);
 	}
+
+	public Map<String, Object> selectBoardListPaging(Map<String, Object> map) throws Exception{
+		// TODO Auto-generated method stub
+		return dao.selectBoardListPaging(map);
+	}
 }

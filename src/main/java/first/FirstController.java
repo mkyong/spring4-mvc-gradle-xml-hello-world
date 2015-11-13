@@ -38,7 +38,7 @@ public class FirstController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = {
-			"/openBoardList", "/"
+			"/openBoardList"
 	})
 	public ModelAndView openBoardList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("boardList");
@@ -59,6 +59,20 @@ public class FirstController {
 		// mv.addObject("paginationInfo", (PaginationInfo)
 		// resultMap.get("paginationInfo"));
 		// mv.addObject("list", resultMap.get("result"));
+
+		return mv;
+	}
+
+	@RequestMapping(value = {
+			"/openBoardListPaging", "/"
+	})
+	public ModelAndView openBoardListPaging(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("boardList");
+
+		Map<String, Object> resultMap = service.selectBoardListPaging(commandMap.getMap());
+
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		mv.addObject("list", resultMap.get("result"));
 
 		return mv;
 	}

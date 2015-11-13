@@ -3,7 +3,7 @@
 
 <mapper namespace="First">
 	<select
-		id="selectBoardList2"
+		id="selectBoardListPaging"
 		parameterType="hashmap"
 		resultType="hashmap">
 		<include refid="common.pagingPre"/> 

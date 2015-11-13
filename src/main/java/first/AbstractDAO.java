@@ -22,7 +22,7 @@ public class AbstractDAO {
 
 	protected void printQueryId(String queryId) {
 		if (log.isDebugEnabled()) {
-			log.debug("\t QueryId  \t:  " + queryId);
+			log.debug("QueryId \t: " + queryId);
 		}
 	}
 
@@ -79,18 +79,29 @@ public class AbstractDAO {
 		Map<String, Object> map = (Map<String, Object>) params;
 		PaginationInfo paginationInfo = null;
 
+		//현재 페이지 번호 처리
 		if (map.containsKey("currentPageNo") == false || StringUtils.isEmpty(map.get("currentPageNo")) == true)
 			map.put("currentPageNo", "1");
+		
+		if (log.isDebugEnabled()) {
+			log.debug("currentPageNo : {}",map.get("currentPageNo"));
+		}
 
+		//전자정부 페이징 처리
 		paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(Integer.parseInt(map.get("currentPageNo").toString()));
+		
+		//페이지당 표현 행수
 		if (map.containsKey("PAGE_ROW") == false || StringUtils.isEmpty(map.get("PAGE_ROW")) == true) {
 			paginationInfo.setRecordCountPerPage(15);
 		} else {
 			paginationInfo.setRecordCountPerPage(Integer.parseInt(map.get("PAGE_ROW").toString()));
 		}
+		
+		//화면에 보여줄 페이지 갯수
 		paginationInfo.setPageSize(10);
 
+		//시작,끝 페이지 계산
 		int start = paginationInfo.getFirstRecordIndex();
 		int end = start + paginationInfo.getRecordCountPerPage();
 		map.put("START", start + 1);
