@@ -59,6 +59,12 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.13/7fcf30c25b8f4a9379b9dad0d3f487b25272c026/slf4j-api-1.7.13.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-jcl/1.7.13/bde9a2c3ef788ca498ed2e626ba23731cfa31f4c/slf4j-jcl-1.7.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.13/55517a839e93c29d8a6ce8d8504a3e124e3a5a2f/slf4j-log4j12-1.7.13.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.13/b5f4685073a6ffba6bf7e1d51e2b5fb83bdfa953/log4j-over-slf4j-1.7.13.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -107,16 +113,22 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/cglib/cglib-nodep/2.2/cglib-nodep-2.2.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/egovframework.rte/egovframework.rte.ptl.mvc/3.5.0/8445935b0a2361382649c16f12ea95d1163b153b/egovframework.rte.ptl.mvc-3.5.0.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/egovframework/rte/egovframework.rte.ptl.mvc/3.5.0/egovframework.rte.ptl.mvc-3.5.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/org/springframework/spring-expression/4.2.2.RELEASE/spring-expression-4.2.2.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/org/springframework/spring-tx/4.2.2.RELEASE/spring-tx-4.2.2.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/junit/junit/4.7/junit-4.7.jar">
@@ -134,34 +146,25 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/egovframework.rte/egovframework.rte.fdl.cmmn/3.5.0/34be09ff23cc7d87cdbf9ab4e466c33f6a5f8e4e/egovframework.rte.fdl.cmmn-3.5.0.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/egovframework/rte/egovframework.rte.fdl.cmmn/3.5.0/egovframework.rte.fdl.cmmn-3.5.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springmodules/spring-modules-validation/0.9/df7ace04a14de6b78115dad681011eb8c2f0e26e/spring-modules-validation-0.9.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/org/springmodules/spring-modules-validation/0.9/spring-modules-validation-0.9.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/commons-validator/commons-validator/1.4.0/42fa1046955ade59f5354a1876cfc523cea33815/commons-validator-1.4.0.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/commons-validator/commons-validator/1.4.0/commons-validator-1.4.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/egovframework.rte/egovframework.rte.fdl.logging/3.5.0/39331c05aba9e489af29499abddea38837990cf/egovframework.rte.fdl.logging-3.5.0.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/egovframework/rte/egovframework.rte.fdl.logging/3.5.0/egovframework.rte.fdl.logging-3.5.0.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.0.9.RELEASE/e446313c92026293805aa814815a8adbbdb5d292/spring-context-support-4.0.9.RELEASE.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/org/springframework/spring-context-support/4.0.9.RELEASE/spring-context-support-4.0.9.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.3/686ef3410bcf4ab8ce7fd0b899e832aaba5facf7/commons-beanutils-1.8.3.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/commons-digester/commons-digester/1.8/dc6a73fdbd1fa3f0944e8497c6c872fa21dca37e/commons-digester-1.8.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.1/31823dcde108f2ea4a5801d1acc77869d7696533/log4j-core-2.1.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j-impl/2.1/fe9d0925aeee68b743e9ea4b68ca9190a2a411a/log4j-slf4j-impl-2.1.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.1/588c32c91544d80cc706447aa2b8037230114931/log4j-api-2.1.jar">
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 	</wb-module>
