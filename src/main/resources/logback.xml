@@ -3,6 +3,15 @@
 <configuration>
 
 	<appender
+		name="info"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%-5level %logger - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	<appender
 		name="STDOUT"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
@@ -38,12 +47,27 @@
 			</Pattern>
 		</layout>
 	</appender>
-	<logger
+		<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+<!-- 	<logger
 		name="org.springframework"
 		level="info"
 		additivity="true">
 		<appender-ref ref="STDOUT" />
-	</logger>
+	</logger> -->
 	<logger
 		name="com.mkyong.helloworld"
 		level="info"
