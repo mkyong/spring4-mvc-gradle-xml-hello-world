@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="2.0">
-	<wb-module deploy-name="spring4-mvc-gradle-xml-hello-world">
-		<property name="context-root" value="spring4-mvc-gradle-xml-hello-world"/>
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="spring4-mvc-gradle-xml">
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
 		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
@@ -185,5 +183,6 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Administrator/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+        <property name="context-root" value="spring4-mvc-gradle-xml"/>
 	</wb-module>
 </project-modules>
