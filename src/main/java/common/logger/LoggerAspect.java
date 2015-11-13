@@ -1,14 +1,14 @@
 package common.logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Aspect
 public class LoggerAspect {
-	protected Log log = LogFactory.getLog(LoggerAspect.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	static String name = "";
 	static String type = "";
 

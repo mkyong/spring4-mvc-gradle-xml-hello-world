@@ -7,7 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller // 너는 C-M-V 중에 컨트롤러 계층이야.
 @RequestMapping(value = "/dept/")
 public class DeptController {
-	Logger				logger		= Logger.getLogger(DeptController.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	///hy_spring4/WebContent/WEB-INF/spring-service.xml
 	@Autowired
@@ -33,7 +34,7 @@ public class DeptController {
 
 	@RequestMapping(value = "getDeptList.hy")
 	public String getDeptList(ModelMap model, @ModelAttribute("deptVO") DeptVO dvo, HttpServletRequest req) {
-		logger.info("getDeptList 호출 성공");
+		log.info("getDeptList 호출 성공");
 		List<DeptVO> dList = null;
 		dList = deptLogic.getDeptList(dvo);
 		// logger.info("dList.size()"+dList.size());
@@ -53,10 +54,10 @@ public class DeptController {
 	 */
 	@RequestMapping(value = "getDeptList2.hy")
 	public ModelAndView getDeptList2(@ModelAttribute("deptVO") DeptVO dvo, HttpServletRequest req) {
-		logger.info("getDeptList 호출 성공");
+		log.info("getDeptList 호출 성공");
 		List<HashMap> dList = null;
 		dList = deptLogic.getDeptList2(dvo);
-		logger.info("dList.size()" + dList.size());
+		log.info("dList.size()" + dList.size());
 		// req.setAttribute("dList", dList);
 		ModelAndView mav = new ModelAndView();// 인스턴스화
 		mav.setViewName("getDeptList2");// setViewName은 응답페이지를 따라가게 되어있다.
@@ -74,7 +75,7 @@ public class DeptController {
 
 	@RequestMapping(value = "deptInsert.hy")
 	public void deptInsert(HttpServletRequest req, HttpServletResponse res) {
-		logger.info("deptInsert 호출 성공");
+		log.info("deptInsert 호출 성공");
 		String deptno = req.getParameter("deptno");
 		String dname = req.getParameter("dname");
 		String loc = req.getParameter("loc");
@@ -98,14 +99,14 @@ public class DeptController {
 				e.printStackTrace();
 			}
 		}
-		logger.info("result : " + result);
+		log.info("result : " + result);
 	}
 
 	@RequestMapping(value = "deptInsert2.hy")
 	public String deptInsert2(@ModelAttribute("deptVO") DeptVO dvo, HttpServletResponse res) throws IOException {
-		logger.info("deptInsert 호출 성공");
+		log.info("deptInsert 호출 성공");
 		int result = deptLogic.deptInsert(dvo);
-		logger.info("result : " + result);
+		log.info("result : " + result);
 		if (result == 1) {// 입력성공
 			return "forward:getDeptList.hy";
 		} else {
@@ -115,9 +116,9 @@ public class DeptController {
 
 	@RequestMapping(value = "deptUpdate.hy")
 	public String deptUpdate(@ModelAttribute("deptVO") DeptVO dvo) throws IOException {
-		logger.info("deptUpdate 호출 성공");
+		log.info("deptUpdate 호출 성공");
 		int result = deptLogic.deptUpdate(dvo);
-		logger.info("result : " + result);
+		log.info("result : " + result);
 		if (result == 1) {// 입력성공
 			return "forward:getDeptList.hy";
 		} else {
@@ -127,9 +128,9 @@ public class DeptController {
 
 	@RequestMapping(value = "deptDelete.hy")
 	public String deptDelete(@ModelAttribute("deptVO") DeptVO dvo) throws IOException {
-		logger.info("deptDelete 호출 성공");
+		log.info("deptDelete 호출 성공");
 		int result = deptLogic.deptDelete(dvo);
-		logger.info("result : " + result);
+		log.info("result : " + result);
 		if (result == 1) {// 입력성공
 			return "forward:getDeptList.hy";
 		} else {
@@ -139,7 +140,7 @@ public class DeptController {
 
 	@RequestMapping(value = "cudDept.hy")
 	public String cudDept(@ModelAttribute("deptVO") DeptVO dvo) throws IOException {
-		logger.info("cudDept 호출 성공");
+		log.info("cudDept 호출 성공");
 		int result = 0;
 		result = deptLogic.cudDept(dvo);
 		return "redirect:getDeptList.hy";

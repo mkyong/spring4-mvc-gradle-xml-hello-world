@@ -9,9 +9,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * AES 대칭키 암호/복호화 예제
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 class SecurityAES {
 
-	protected static Log log = LogFactory.getLog(SecuritySHA.class);
+	private final static Logger log = LoggerFactory.getLogger(SecurityAES.class);
 
 	private static SecretKeySpec secretKey;
 	private static byte[] key;

@@ -3,8 +3,9 @@ package scott;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SqlDeptDao implements DeptMapper {
 
-	Logger						logger		= Logger.getLogger(SqlDeptDao.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	@Qualifier("scottTemplate")
@@ -20,23 +21,23 @@ public class SqlDeptDao implements DeptMapper {
 
 	@Override
 	public List<DeptVO> getDeptList(DeptVO dvo) {
-		logger.info("getDeptList È£Ãâ ¼º°ø");
+		log.info("getDeptList È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		List<DeptVO> deptList = null;
 		deptList = sqlSession.selectList("getDeptList", dvo);
 		return deptList;
 	}
 
-	public List<HashMap> getDeptList2(DeptVO dvo) {// ¼Óµµ°¡ »¡¶ó¼­ ´ë¿ë·® µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ¼±È£.
-		logger.info("getDeptList2 È£Ãâ ¼º°ø");
+	public List<HashMap> getDeptList2(DeptVO dvo) {// ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ë·® ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£.
+		log.info("getDeptList2 È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		List<HashMap> deptList = null;
 		deptList = sqlSession.selectList("getDeptList2", dvo);
-		logger.info("getDeptList2 È£Ãâ ¼º°ø");
+		log.info("getDeptList2 È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		return deptList;
 	}
 
 	@Override
 	public int deptInsert(DeptVO dvo) {
-		logger.info("deptInsert È£Ãâ ¼º°ø");
+		log.info("deptInsert È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		int result = 0;
 		result = sqlSession.insert("deptInsert", dvo);
 		return result;
@@ -44,7 +45,7 @@ public class SqlDeptDao implements DeptMapper {
 
 	@Override
 	public int deptUpdate(DeptVO dvo) {
-		logger.info("deptUpdate È£Ãâ ¼º°ø");
+		log.info("deptUpdate È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		int result = 0;
 		result = sqlSession.update("deptUpdate", dvo);
 		return result;
@@ -52,7 +53,7 @@ public class SqlDeptDao implements DeptMapper {
 
 	@Override
 	public int deptDelete(DeptVO dvo) {
-		logger.info("deptDelete È£Ãâ ¼º°ø");
+		log.info("deptDelete È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		int result = 0;
 		result = sqlSession.delete("deptDelete", dvo);
 		return result;

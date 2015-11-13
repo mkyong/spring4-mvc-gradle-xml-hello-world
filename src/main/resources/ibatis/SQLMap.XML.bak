@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace=”Product”>
+	<!-- <cacheModel
+		id=”productCache”
+		type=”LRU”>
+		<flushInterval hours=”24” />
+		<property
+		name=”size”
+		value=”1000” />
+		</cacheModel> -->
+	<!-- <typeAlias
+		alias=”product”
+		type=”com.ibatis.example.Product” /> -->
+	<!-- <parameterMap
+		id=”productParam”
+		class=”product”>
+		<parameter property=”id” />
+		</parameterMap> -->
+	<!-- <resultMap
+		id=”productResult”
+		class=”product”>
+		<result
+		property=”id”
+		column=”PRD_ID” />
+		<result
+		property=”description”
+		column=”PRD_DESCRIPTION” />
+		</resultMap> -->
+	<select
+		id=”getProduct”
+		parameterMap=”productParam”
+		resultMap=”productResult”
+		cacheModel=”product-cache”>
+		select * from PRODUCT where PRD_ID = ?
+	</select>
+	<select
+		id="getPersonsByAge"
+		parameterClass=”int”
+		resultClass="examples.domain.Person">
+		SELECT *
+		FROM PERSON
+		WHERE AGE <![CDATA[ > ]]>
+		#value#
+	</select>
+	<sql id="selectItem_fragment">
+		FROM items
+		WHERE parentid = #value#
+	</sql>
+	<select
+		id="selectItemCount"
+		parameterClass="int"
+		resultClass="int">
+		SELECT COUNT(*) AS total
+		<include refid="selectItem_fragment" />
+	</select>
+	<select
+		id="selectItems"
+		parameterClass="int"
+		resultClass="Item">
+		SELECT id, name
+		<include refid="selectItem_fragment" />
+	</select>
+</sqlMap>

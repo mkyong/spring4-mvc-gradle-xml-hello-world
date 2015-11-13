@@ -1,25 +1,23 @@
 package first;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import common.utill.UtilsFile;
 import common.utill.UtilsEmpty;
+import common.utill.UtilsFile;
 
 @Service("FirstService")
 public class FirstService {
 
-	Logger log = Logger.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Resource(name = "fileUtils")
 	private UtilsFile fileUtils;

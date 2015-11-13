@@ -1,21 +1,23 @@
 package board.board;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import sun.rmi.runtime.Log;
+
 @Repository
 public class BoardDao {
 
-	protected Log log = LogFactory.getLog(this.getClass());
-
+	//protected Log log = //LogFactory.getLog(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	private final String nameSpace="board.board.";
 	
 	// @Autowired

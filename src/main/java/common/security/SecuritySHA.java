@@ -6,8 +6,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +30,7 @@ import common.utill.UtillsTimeChack;
 }) // ,method = RequestMethod.POST
 public class SecuritySHA {
 
-	protected static Log log = LogFactory.getLog(SecuritySHA.class);
+	private final static Logger log = LoggerFactory.getLogger(SecuritySHA.class);
 
 	/**
 	 * 단일 암호화 샘플
@@ -305,23 +305,23 @@ public class SecuritySHA {
 		UtillsTimeChack t2=new UtillsTimeChack();
 		
 		t1.setStart();
-		log.debug(t1.getStart());
+		log.debug("{}",t1.getStart());
 		for (int i = 0; i < 10000; i++) {
 			SHA512("SecuritySample");
 		}
 		t1.setEnd();
-		log.debug(t1.getEnd());
+		log.debug("{}",t1.getEnd());
 		
 		t2.setStart();
-		log.debug(t1.getStart());
+		log.debug("{}",t1.getStart());
 		for (int i = 0; i < 10000; i++) {
 			SHA512t("SecuritySample");
 		}
 		t2.setEnd();
-		log.debug(t1.getEnd());
+		log.debug("{}",t1.getEnd());
 		
-		log.debug(t1.getTime());
-		log.debug(t2.getTime());
+		log.debug("{}",t1.getTime());
+		log.debug("{}",t2.getTime());
 
 
 	}
