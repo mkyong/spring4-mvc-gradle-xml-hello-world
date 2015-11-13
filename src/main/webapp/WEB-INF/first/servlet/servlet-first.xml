@@ -82,7 +82,7 @@
 	</beans:bean>
 
 	<!-- 전자정부 페이징 설정 -->
-	<!-- <beans:bean
+	<beans:bean
 		id="textRenderer"
 		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
 	<beans:bean
@@ -95,7 +95,7 @@
 					value-ref="textRenderer" />
 			</beans:map>
 		</beans:property>
-	</beans:bean> -->
+	</beans:bean>
 
 	<context:component-scan base-package="first" />
 	<context:component-scan base-package="common" />

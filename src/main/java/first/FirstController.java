@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import common.utill.UtilsEmpty;
 import common.utill.UtilsUUID;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class FirstController {
@@ -44,6 +45,20 @@ public class FirstController {
 
 		List<Map<String, Object>> list = service.selectBoardList(commandMap);
 		mv.addObject("list", list);
+
+		// commandMap.mapPrint();
+		// Map<String, Object> resultMap =
+		// service.selectBoardList(commandMap.getMap());
+		//
+		// if (log.isDebugEnabled()) {
+		// log.debug("paginationInfo" +
+		// resultMap.get("paginationInfo").toString());
+		// log.debug("result" + resultMap.get("result").toString());
+		// }
+
+		// mv.addObject("paginationInfo", (PaginationInfo)
+		// resultMap.get("paginationInfo"));
+		// mv.addObject("list", resultMap.get("result"));
 
 		return mv;
 	}
@@ -96,35 +111,40 @@ public class FirstController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/insertBoard", method = RequestMethod.POST)
-	public String insertBoard(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirect) throws Exception {
-		//ModelAndView mv = new ModelAndView("redirect:openBoardList");
-		
-		//log.debug("TITLE:"+commandMap.get("TITLE"));
-		
+	public String insertBoard(
+			CommandMap commandMap,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			RedirectAttributes redirect) throws Exception {
+		// ModelAndView mv = new ModelAndView("redirect:openBoardList");
+
+		// log.debug("TITLE:"+commandMap.get("TITLE"));
+
 		if (UtilsEmpty.isEmpty(commandMap.get("TITLE"))) {
-			//response.sendRedirect("boardList");
-			//redirect.addFlashAttribute("CONTENTS", commandMap.get("CONTENTS"));
+			// response.sendRedirect("boardList");
+			// redirect.addFlashAttribute("CONTENTS",
+			// commandMap.get("CONTENTS"));
 			commandMap.redirect(redirect);
 			redirect.addFlashAttribute("msg", "TITLE 내용이 없습니다");
 			return "redirect:openBoardWrite";
 		}
 		if (UtilsEmpty.isEmpty(commandMap.get("CONTENTS"))) {
-			//response.sendRedirect("boardList");
-			//redirect.addFlashAttribute("TITLE", commandMap.get("TITLE"));
+			// response.sendRedirect("boardList");
+			// redirect.addFlashAttribute("TITLE", commandMap.get("TITLE"));
 			commandMap.redirect(redirect);
 			redirect.addFlashAttribute("msg", "CONTENTS 내용이 없습니다");
 			return "redirect:openBoardWrite";
 		}
 
-		List<Map<String, Object>> faillist=service.insertBoard(commandMap.getMap(), request);
-		
-		log.debug("UtilsEmpty.isEmpty(faillist)"+UtilsEmpty.isEmpty(faillist));
-		log.debug("faillist:"+faillist);
+		List<Map<String, Object>> faillist = service.insertBoard(commandMap.getMap(), request);
+
+		log.debug("UtilsEmpty.isEmpty(faillist)" + UtilsEmpty.isEmpty(faillist));
+		log.debug("faillist:" + faillist);
 		if (!UtilsEmpty.isEmpty(faillist)) {
-			//mv.addObject("failList", faillist);
+			// mv.addObject("failList", faillist);
 			redirect.addFlashAttribute("msg", faillist);
-		}		
-		
+		}
+
 		return "redirect:openBoardList";
 	}
 
@@ -136,7 +156,7 @@ public class FirstController {
 		mv.addObject("map", map.get("map"));// 기존 상세글
 		// log.debug(map.get("list")==null);
 		// log.debug(map.get("list").equals(""));
-		log.debug("UtilsEmpty.isEmpty(map.get:"+UtilsEmpty.isEmpty(map.get("list")));
+		log.debug("UtilsEmpty.isEmpty(map.get:" + UtilsEmpty.isEmpty(map.get("list")));
 
 		if (!UtilsEmpty.isEmpty(map.get("list")))
 			mv.addObject("list", map.get("list"));// 첨부파일 목록
@@ -146,13 +166,13 @@ public class FirstController {
 
 	@RequestMapping(value = "/openBoardUpdate")
 	public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception {
-		
+
 		log.debug("openBoardUpdate");
-		
+
 		ModelAndView mv = new ModelAndView("boardUpdate");
 
 		Map<String, Object> map = service.selectBoardDetail(commandMap.getMap());
-		
+
 		mv.addObject("map", map.get("map"));
 		if (!UtilsEmpty.isEmpty(map.get("list")))
 			mv.addObject("list", map.get("list"));

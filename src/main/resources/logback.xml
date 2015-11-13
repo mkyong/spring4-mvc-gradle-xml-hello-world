@@ -76,43 +76,43 @@
 	</logger>
 	<logger
 		name="common"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger
 		name="sample"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger
 		name="defult"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger
 		name="board2"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger
 		name="board"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger
 		name="scott"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger
 		name="first"
-		additivity="true">
+		additivity="false">
 		<level value="debug" />
 		<appender-ref ref="console" />
 	</logger>

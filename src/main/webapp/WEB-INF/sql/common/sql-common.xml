@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="common">
+	<sql id="pagingPre">
+    <![CDATA[
+        SELECT
+            AAA.*
+        FROM(
+            SELECT
+                COUNT(*) OVER() AS TOTAL_COUNT,
+                AA.*
+            FROM(  
+    ]]>
+	</sql>
+
+	<sql id="pagingPost">
+    <![CDATA[
+            ) AA
+        ) AAA
+        WHERE
+            AAA.RNUM BETWEEN #{START} AND #{END}
+    ]]>
+	</sql>
 	<select
 		id="selectFileInfo"
 		parameterType="hashmap"

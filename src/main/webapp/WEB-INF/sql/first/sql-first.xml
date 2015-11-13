@@ -3,6 +3,26 @@
 
 <mapper namespace="First">
 	<select
+		id="selectBoardList2"
+		parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+        <![CDATA[
+            select
+            	ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM,
+                idx,
+                title,
+                hit_cnt,
+                crea_dtm
+            from
+                tb_board
+            where
+                del_gb = 'N'
+            order by idx desc
+        ]]>
+        <include refid="common.pagingPost"/> 
+	</select>
+	<select
 		id="selectBoardList"
 		parameterType="hashmap"
 		resultType="hashmap">
