@@ -1,3 +1,19 @@
+=== ===
+
+전자정부 프레임워크 따라하는중
+
+=== ===
+
+어떤 jar 파일이 누락 되었음
+뭔지는 모름
+
+=== ===
+/spring4-mvc-gradle-xml-hello-world/src/main/webapp/WEB-INF/views/jsp/index.jsp
+파일에서
+The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path
+라는 오류가 뜨지만 잘 구동됨.
+대체 왜..?
+
 Gradle - Spring 4 MVC Hello World
 ===============================
 Template for Spring 4 MVC + JSP view + XML configuration, using Gradle build tool.

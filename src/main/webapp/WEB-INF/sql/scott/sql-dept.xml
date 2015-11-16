@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.DeptMapper">
+	<select id="getDeptList" parameterType="scott.DeptVO" resultType="scott.DeptVO">
+		SELECT
+		       deptno, dname, loc
+		  FROM dept	
+		<!-- <where>
+    		<if test="deptno != 0">
+    			AND deptno = #{deptno}          
+    		</if>
+        </where>    -->  
+        ORDER BY deptno desc 
+	</select>
+	<select id="getDeptList2" parameterType="scott.DeptVO" resultType="HashMap">
+		SELECT
+		       deptno, dname, loc
+		  FROM dept	
+	</select>
+	<insert id="deptInsert" parameterType="scott.DeptVO">
+		INSERT INTO dept VALUES(#{deptno},#{dname},#{loc})
+	</insert>	  
+	<update id="deptUpdate" parameterType="scott.DeptVO">
+		UPDATE dept SET dname=#{dname}, loc=#{loc} where deptno = #{deptno}
+	</update>	  
+	<delete id="deptDelete" parameterType="scott.DeptVO">
+		DELETE FROM dept WHERE deptno=#{deptno}
+	</delete>	  
+</mapper>
