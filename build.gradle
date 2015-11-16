@@ -48,14 +48,15 @@ dependencies {
 	compile 'javax.inject:javax.inject:1'
 	
 	compile 'javax.annotation:jsr250-api:1.0'
-
 	
 	compile 'org.mybatis:mybatis:3.3.0'
 	compile 'org.mybatis:mybatis-spring:1.2.3'
 	
-	compile 'org.aspectj:aspectjrt:1.8.7'
-	compile 'org.aspectj:aspectjweaver:1.8.7'
-	compile 'org.aspectj:aspectjtools:1.8.7'
+	compile 'org.aspectj:aspectjrt:1.8.7'//Aspectj 표현식,aop 관련
+	compile 'org.aspectj:aspectjweaver:1.8.7'//Aspectj 표현식,aop 관련
+	compile 'org.aspectj:aspectjtools:1.8.7'//Aspectj 표현식,aop 관련
+	
+	compile 'cglib:cglib-nodep:2.2'//aop 사용시 스프링 3.1 이하는 이게 필요
 	
 	compile 'aopalliance:aopalliance:1.0'
 	
@@ -104,7 +105,6 @@ dependencies {
 	compile 'com.navercorp.lucy:lucy-xss:1.6.3'//태그제거 라이브러리
 	compile 'com.oracle:ojdbc14:10.2.0.4.0'//오라클
 	
-	compile 'cglib:cglib-nodep:2.2'//aop 사용시 스프링 3.1 이하는 이게 필요
 	
 	compile 'egovframework.rte:egovframework.rte.ptl.mvc:3.5.0'
 	//compile ('egovframework.rte:egovframework.rte.ptl.mvc:3.5.0'){//전자정부 프레임워크
