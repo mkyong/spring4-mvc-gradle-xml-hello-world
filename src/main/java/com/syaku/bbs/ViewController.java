@@ -77,22 +77,27 @@ public class ViewController {
 
 	@RequestMapping(value = "/write_ok", method = RequestMethod.POST)
 	public String procBbsWrite(@ModelAttribute("bbsVo") BbsVo bbsVo, RedirectAttributes redirectAttributes) {
+		logger.info("bbsVo.getContent:{}",bbsVo.getUser_name());
+		logger.info("bbsVo.getContent:{}",bbsVo.getSubject());
+		logger.info("bbsVo.getContent:{}",bbsVo.getContent());
+		logger.info("bbsVo.getContent:{}",bbsVo.getIdx());
 		Integer idx = bbsVo.getIdx();
 
 		if (idx == null || idx == 0) {
 			this.bbsDao.insert(bbsVo);
 			redirectAttributes.addFlashAttribute("message", "추가되었습니다.");
-			return "redirect:/";
+			return "redirect:./";
 		} else {
 			this.bbsDao.update(bbsVo);
 			redirectAttributes.addFlashAttribute("message", "수정되었습니다.");
-			return "redirect:/write?idx=" + idx;
+			//return "redirect:./write?idx=" + idx;
+			return "redirect:./" + idx;
 		}
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String procBbsDelete(@RequestParam(value = "idx", required = false) int idx) {
         this.bbsDao.delete(idx);
-        return "redirect:/";
+        return "redirect:./";
     }
 }

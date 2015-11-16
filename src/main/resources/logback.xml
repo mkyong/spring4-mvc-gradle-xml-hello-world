@@ -123,6 +123,12 @@
 		<appender-ref ref="console" />
 	</logger>
 	<logger
+		name="com"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
 		name="jdbc.sqlonly"
 		additivity="false">
 		<level value="INFO" />

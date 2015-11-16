@@ -19,11 +19,11 @@
     </select>
 
     <insert id="insert">
-         INSERT INTO bbs ( user_name, subject, content, reg_datetime ) VALUES (
+         INSERT INTO bbs ( user_name, subject, content) VALUES (
                 #{user_name}
               , #{subject}
               , #{content}
-              , #{reg_datetime}
+
          )
     </insert>
 
@@ -32,8 +32,8 @@
               user_name = #{user_name},
               subject = #{subject},
               content = #{content},
-              reg_datetime = #{reg_datetime}
-         WHERE idx = #{idx} LIMIT 1
+              reg_datetime = sysdate
+         WHERE idx = #{idx} 
     </update>
 
     <delete id="delete">
