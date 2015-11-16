@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="defult">
+	<!-- http://installed.tistory.com/entry/SPRING30-11%EA%B2%8C%EC%8B%9C%ED%8C%90 -->
+
+	<!-- 전체 글의 갯수 구하기 -->
+	<select
+		id="userListCount"
+		resultType="int"
+		parameterType="hashmap">
+		select
+		NVL(count(1),0) <!-- value가 null 일경우 0을 반환, 아닐경우1 -->
+		from defult_user
+		<where>
+			<if test="id!=null and id!=''">
+				or u_id like '%'||#{id}||'%'
+			</if>
+			<if test="nick!=null and nick!=''">
+				or u_nick like '%'||#{nick}||'%'
+			</if>
+			<if test="all!=null and all!=''">
+				or u_id like '%'||#{all}||'%'
+				or u_nick like
+				'%'||#{all}||'%'
+			</if>
+		</where>
+	</select>
+	<select
+		id="userList"
+		parameterType="hashmap"
+		resultType="UserVO">
+		select *
+		from (select
+		rownum rnum,
+		u.*
+		from ( select
+		u_no,
+		u_id,
+		u_pw,
+		u_nick,
+		u_indate,
+		u_delete,
+		u_eddate
+		from defult_user
+		<where>
+			<if test="id!=null and id!=''">
+				or u_id like '%'||#{id}||'%'
+			</if>
+			<if test="nick!=null and nick!=''">
+				or u_nick like '%'||#{nick}||'%'
+			</if>
+			<if test="all!=null and all!=''">
+				or u_id like '%'||#{all}||'%'
+				or u_nick like
+				'%'||#{all}||'%'
+			</if>
+		</where>
+		order by u_no
+		desc) u)
+    <![CDATA[
+         where rnum >= #{startNum}
+           and rnum <= #{endNum}
+         ]]>
+	</select>
+
+	<!-- 전체 글의 갯수 구하기 -->
+	<select
+		id="boardListCount"
+		resultType="int"
+		parameterType="hashmap">
+		select
+		NVL(count(1),0) <!-- value가 null 일경우 0을 반환, 아닐경우1 -->
+		from defult_user
+		inner join defult_board on (defult_user.u_no =
+		defult_board.u_no)
+		<where>
+			<if test="id!=null and id!=''">
+				or u_id like '%'||#{id}||'%'
+			</if>
+			<if test="nick!=null and nick!=''">
+				or u_nick like '%'||#{nick}||'%'
+			</if>
+			<if test="title!=null and title!=''">
+				or b_title like '%'||#{title}||'%'
+			</if>
+			<if test="content!=null and content!=''">
+				or b_content like '%'||#{content}||'%'
+			</if>
+			<if test="all!=null and all!=''">
+				or u_id like '%'||#{all}||'%'
+				or u_nick like
+				'%'||#{all}||'%'
+				or b_title like '%'||#{all}||'%'
+				or b_content like
+				'%'||#{all}||'%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 게시글 목록 -->
+	<select
+		id="boardList"
+		parameterType="hashmap"
+		resultType="BoardVO">
+		select b_no,
+		b_title,
+		b_content,
+		b_indate,
+		b_eddate,
+		b_delete,
+		u_no
+		from
+		defult_board
+		<where>
+			<if test="b_delete==0">
+				or b_delete=0
+			</if>
+			<if test="u_no!=null and u_no!=''">
+				or u_no like '%'||#{u_no}||'%'
+			</if>
+			<if test="b_title!=null and b_title!=''">
+				or b_title like '%'||#{b_title}||'%'
+			</if>
+			<if test="b_content!=null and b_content!=''">
+				or b_content like '%'||#{b_content}||'%'
+			</if>
+		</where>
+		order by b_no desc
+	</select>
+
+	<!-- 페이지별로 보기 -->
+	<select
+		id="boardListPage"
+		parameterType="hashmap"
+		resultType="BoardVO">
+		select *
+		from (select
+		rownum rnum,
+		bd.*
+		from ( select
+		b_no,
+		b_title,
+		<!-- b_content, -->
+		b_indate,
+		<!-- b_eddate, -->
+		b_delete,
+		<!-- defult_board.u_no, -->
+		u_id,
+		<!-- u_pw, -->
+		u_nick,
+		<!-- u_indate, -->
+		<!-- u_eddate, -->
+		u_delete
+		from defult_user
+		inner join
+		defult_board
+		on (defult_user.u_no =
+		defult_board.u_no)
+		<where>
+			<if test="id!=null and id!=''">
+				or u_id like '%'||#{id}||'%'
+			</if>
+			<if test="nick!=null and nick!=''">
+				or u_nick like '%'||#{nick}||'%'
+			</if>
+			<if test="title!=null and title!=''">
+				or b_title like '%'||#{title}||'%'
+			</if>
+			<if test="content!=null and content!=''">
+				or b_content like '%'||#{content}||'%'
+			</if>
+			<if test="all!=null and all!=''">
+				or u_id like '%'||#{all}||'%'
+				or u_nick like
+				'%'||#{all}||'%'
+				or b_title like '%'||#{all}||'%'
+				or b_content like
+				'%'||#{all}||'%'
+			</if>
+		</where>
+		order by b_no
+		desc) bd)
+    <![CDATA[
+         where rnum >= #{startNum}
+           and rnum <= #{endNum}
+         ]]>
+	</select>
+	<!-- 상세글보기 -->
+	<select
+		id="boardDetail"
+		parameterType="int"
+		resultType="BoardVO">
+		SELECT
+		b_no,
+		b_title,
+		b_content,
+		b_eddate,
+		b_indate,
+		b_delete,
+		defult_board.u_no u_no,
+		u_id,
+		u_nick,
+		u_delete
+		FROM defult_user
+		inner join
+		defult_board
+		on (defult_user.u_no = defult_board.u_no)
+		where
+		b_no=#{value}
+	</select>
+
+	<!-- 이전 : 최신글 다음 : 과거글 -->
+	<!-- 이전글 -->
+	<select
+		id="getPrev"
+		parameterType="int"
+		resultType="BoardVO">
+        <![CDATA[
+        SELECT *
+          FROM (
+                 SELECT b_content FROM defult_board
+                  WHERE b_no > #{value}  
+                  ORDER BY b_no ASC
+               ) 
+         WHERE ROWNUM = 1
+         ]]>
+	</select>
+	<!-- 다음글 -->
+	<select
+		id="getNext"
+		parameterType="int"
+		resultType="BoardVO">
+        <![CDATA[
+        SELECT *
+          FROM (
+                 SELECT b_content FROM defult_board
+                  WHERE b_no < #{value}  
+                  ORDER BY b_no DESC
+               ) 
+         WHERE ROWNUM = 1
+         ]]>
+	</select>
+
+	<select
+		id="replyList"
+		parameterType="ReplyVO"
+		resultType="ReplyVO">
+		select r_no,
+		r_content,
+		u_no,
+		b_no,
+		r_indate,
+		r_eddate
+		from
+		defult_reply
+		<where>
+			<if test="r_delete==0">
+				or r_delete=0
+			</if>
+		</where>
+		order by r_no desc
+	</select>
+
+	<insert
+		id="userInsert"
+		parameterType="UserVO">
+		insert into
+		defult_user (
+		u_id
+		, u_pw
+		, u_nick
+		) values (
+		#{u_id }
+		, #{u_pw }
+		, #{u_nick}
+		)
+	</insert>
+	<insert
+		id="boardInsert"
+		parameterType="BoardVO">
+		insert into
+		defult_board (
+		b_title
+		, b_content
+		, u_no
+		)values (
+		#{b_title }
+		, #{b_content }
+		, #{u_no }
+		)
+	</insert>
+	<insert
+		id="replyInsert"
+		parameterType="ReplyVO">
+		insert into
+		defult_reply (
+		r_content
+		, b_no
+		, u_no) values (
+		#{r_content}
+		, #{b_no }
+		, #{u_no }
+		)
+	</insert>
+
+	<update
+		id="userUpdate"
+		parameterType="UserVO">
+		update defult_user
+		set
+		u_pw = #{u_pw}
+		, u_nick = #{u_nick}
+		, u_delete = #{u_delete}
+		where u_no =
+		#{u_no }
+		and u_id = #{u_id }
+		and
+		u_pw = #{u_pw }
+		and u_nick = #{u_nick }
+		and u_delete =0
+	</update>
+	<update
+		id="boardUpdate"
+		parameterType="BoardVO">
+		update defult_board
+		set
+		b_title = #{b_title },
+		b_content =
+		#{b_content} ,
+		b_eddate = #{b_eddate },
+		b_delete = #{b_delete }
+		where
+		b_no = #{b_no }
+		and u_no = #{u_no }
+		and b_delete =0
+	</update>
+	<update
+		id="replyUpdate"
+		parameterType="ReplyVO">
+		update defult_reply
+		set
+		r_content = #{r_content}
+		,r_delete= #{r_delete}
+		,r_eddate = sysdate
+		where r_no = #{r_no }
+		and b_no
+		= #{b_no}
+		and u_no = #{u_no }
+		and r_delete =0
+	</update>
+</mapper>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/jdbc  
+                        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+                        http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/tx
+    					http://www.springframework.org/schema/tx/spring-tx.xsd
+    					http://www.springframework.org/schema/aop
+    					http://www.springframework.org/schema/aop/spring-aop.xsd
+                        ">
+
+	<!-- mysql용 설정 파일 -->
+	<!-- <bean
+		id="jdbcProp"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property
+		name="location"
+		value="classpath:jdbc.properties" />
+		</bean>
+
+		<bean
+		id="defultSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property
+		name="driverClassName"
+		value="${jdbc.driver}" />
+		<property
+		name="url"
+		value="${jdbc.url}" />
+		<property
+		name="username"
+		value="${jdbc.username}" />
+		<property
+		name="password"
+		value="${jdbc.password}" />
+		</bean> -->
+	<!-- mysql용 설정 파일 -->
+
+	<!-- 오라클용 설정 파일 -->
+	<!-- 유저 생성은 defult user create.sql 문서 참조 -->
+	<bean
+		id="defultSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property
+			name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property
+			name="url"
+			value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property
+			name="username"
+			value="defult" />
+		<property
+			name="password"
+			value="defult" />
+	</bean>
+	<!-- 오라클용 설정 파일 -->
+	
+	<bean
+		id="defultSqlLog"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="defultSource" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property
+					name="loggingType"
+					value="MULTI_LINE" />
+				<property
+					name="sqlPrefix"
+					value="" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Transaction Manager -->
+	<!-- <bean
+		id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property
+		name="dataSource"
+		ref="defultSqlLog" />
+		</bean> -->
+
+	<!-- <tx:advice
+		id="txAdvice"
+		transaction-manager="transactionManager">
+		<tx:attributes>
+		<tx:method
+		name="get*"
+		read-only="true" />
+		<tx:method name="delete*" />
+		</tx:attributes>
+		</tx:advice> -->
+	<!--
+		<tx:method> 속성 설명
+
+		name : 트랜잭션이 적용될 메서드 이름을 명시하며 필수 속성이다. get*,delete*,* 설정이 가능하다.
+		propagation : 트랜잭션 동작 설정하며 기본값 REQUIRED 이다.
+		isolation : 트랜잭션의 격리 수준을 설정하며 기본값은 DEFAULT 이다.
+		timeout : 트랜잭션 시간 초과 값을 설정하며 기본값은 -1 이다. 초단위로 입력한다.
+		read-only : 읽기 전용 여부를 설정한다. 기본값은 false 이다.
+		rollback-for : 롤백을 할 예외를 설정한다. 여러개를 입력할 경우 , 로 구분한다. 기본값은 RuntimeException
+		이다. Exception, com.syaku.MyException 설정이 가능하다.
+		no-rollback-for : 롤백하지 않을 예외를 설정한다. 여러개를 입력할 경우 , 로 구분한다. Exception, com.syaku.MyException
+		설정이 가능하다
+	-->
+
+	<!-- <aop:config>
+		<aop:pointcut
+		id="transactionPointcut"
+		expression="execution(* defult.*(..))" />
+		<aop:advisor
+		advice-ref="txAdvice"
+		pointcut-ref="transactionPointcut" />
+		</aop:config> -->
+
+	<bean
+		id="defultSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property
+			name="dataSource"
+			ref="defultSqlLog" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:/**/sql/**/sql-*.xml</value>
+				<value>/WEB-INF/**/sql/**/sql-*.xml</value>
+			</list>
+		</property>
+		<property
+			name="configLocation"
+			value="/WEB-INF/mybatis/mybatis-config.xml" />
+	</bean>
+
+	<bean
+		id="defultTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg
+			index="0"
+			ref="defultSession" />
+	</bean>
+
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- <settings>
+		<setting
+		name="cacheEnabled"
+		value="false" />
+		<setting
+		name="useGeneratedKeys"
+		value="true" />
+		<setting
+		name="defaultExecutorType"
+		value="REUSE" />
+		</settings> -->
+
+	<typeAliases>
+		<package name="board" />
+		<!-- <typeAlias
+			alias="Person"
+			type="com.mobiconsoft.dashboard.domain.Person"></typeAlias> -->
+	</typeAliases>
+
+	<!-- <mappers>
+		<mapper resource="com/mobiconsoft/dashboard/mybatis/mapper/Person.xml"></mapper>
+		</mappers> -->
+</configuration>

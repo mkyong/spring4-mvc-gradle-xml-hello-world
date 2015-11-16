@@ -1,47 +1,156 @@
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
-apply plugin: 'jetty'
+apply plugin: 'eclipse-wtp' // WTP(Web Tools Platform) -> 웹 프로젝트로 인식하도록
 
+compileJava.options.encoding = 'UTF-8'  // 지정하지 않으면 OS 기본 인코딩으로 간주
+version = '1.0'
 // JDK 7
-sourceCompatibility = 1.7
+sourceCompatibility = 1.7// 빌드시 해당 버전으로 자바 문법 검사
 targetCompatibility = 1.7
 
 repositories {
     mavenLocal()
     mavenCentral()
-}
-
-dependencies {
- 
-	compile 'ch.qos.logback:logback-classic:1.1.3'
-	compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
-	compile 'javax.servlet:jstl:1.2'
-	
-}
-
-// Embeded Jetty for testing
-jettyRun{
-	contextPath = "spring4"
-	httpPort = 8080
-}
-
-jettyRunWar{
-	contextPath = "spring4"
-	httpPort = 8080
-}
-
-//For Eclipse IDE only
-eclipse {
-
-  wtp {
-    component {
-      
-      //define context path, default to project folder name
-      contextPath = 'spring4'
-      
+    maven {
+        url "http://www.egovframe.go.kr/maven/"
     }
-    
-  }
 }
 
+def version = [
+li:'latest.integration',	//${ver.li}//최신 버전 베타 포함인듯
+lr:'latest.release',		//${ver.lr}//릴리즈된것중 최신
+spring: '4.2.2.RELEASE',	//${ver.spring}
+aspectj:'1.8.7',			//${ver.aspectj}
+slf4j:'1.7.13'				//${ver.slf4j}
+]
+
+dependencies { 
+
+	
+	//${ver.spring}가 안먹힘.. 대체 왜?
+	compile 'org.springframework:spring-aop:4.2.2.RELEASE'
+	compile 'org.springframework:spring-beans:4.2.2.RELEASE'
+	compile 'org.springframework:spring-core:4.2.2.RELEASE'
+	compile 'org.springframework:spring-context:4.2.2.RELEASE'
+	compile 'org.springframework:spring-context-support:4.2.2.RELEASE'
+	compile 'org.springframework:spring-jdbc:4.2.2.RELEASE'//스프링 jdbc  db연결을 위해 필요 
+	compile 'org.springframework:spring-orm:4.2.2.RELEASE'
+	compile 'org.springframework:spring-orm:3.2.5.RELEASE'
+	compile 'org.springframework:spring-test:4.2.2.RELEASE'
+	compile 'org.springframework:spring-tx:4.2.2.RELEASE'
+	compile 'org.springframework:spring-web:4.2.2.RELEASE'
+	compile 'org.springframework:spring-webmvc:4.2.2.RELEASE'//latest.release
+	
+	compile 'javax.servlet:jstl:1.2'
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
+	compile 'javax.servlet.jsp:jsp-api:2.2'
+	
+	compile 'javax.inject:javax.inject:1'
+	
+	compile 'javax.annotation:jsr250-api:1.0'
+	
+	compile 'org.mybatis:mybatis:3.3.0'
+	compile 'org.mybatis:mybatis-spring:1.2.3'// Spring 에서 연동을 지원하는 myBatis
+	
+	compile 'org.aspectj:aspectjrt:1.8.7'//Aspectj 표현식,aop 관련
+	compile 'org.aspectj:aspectjweaver:1.8.7'//Aspectj 표현식,aop 관련
+	compile 'org.aspectj:aspectjtools:1.8.7'//Aspectj 표현식,aop 관련
+	
+	compile 'cglib:cglib-nodep:2.2'//aop 사용시 스프링 3.1 이하는 이게 필요
+	
+	compile 'aopalliance:aopalliance:1.0'
+	
+	compile 'hsqldb:hsqldb:1.8.0.10'
+	
+	compile 'org.apache.ibatis:ibatis-sqlmap:2.3.4.726'
+	
+	compile 'org.easymock:easymock:3.4'//전자정부에서 사용
+	
+	compile 'org.slf4j:slf4j-api:1.7.13'//로깅
+	compile 'org.slf4j:slf4j-jcl:1.7.13'
+	compile 'org.slf4j:slf4j-log4j12:1.7.13'
+	compile 'org.slf4j:log4j-over-slf4j:1.7.13'
+	compile 'org.slf4j:jcl-over-slf4j:1.7.13'
+	
+	compile 'org.lazyluke:log4jdbc-remix:0.2.7'//쿼리 로그 출력용
+	
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'//제이슨
+	
+	compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+	
+	compile 'ch.qos.logback:logback-classic:1.1.3'
+	compile 'ch.qos.logback:logback-access:1.1.3'
+	compile 'ch.qos.logback:logback-core:1.1.3'
+
+	//compile 'log4j:log4j:1.2.17'
+	//compile 'xerces:xercesImpl:2.11.0'//로그 출력시 한글 오류 문제 해결 
+	
+	compile 'commons-beanutils:commons-beanutils:1.9.2'
+	compile 'commons-codec:commons-codec:1.10'//암호화를 위해 추가
+	compile 'commons-collections:commons-collections:3.2.1'
+	compile 'commons-dbcp:commons-dbcp:1.4'//커넥션풀을 담당하는 Apache Commons DBCP
+	compile 'commons-fileupload:commons-fileupload:1.3.1'//파일 업로드용
+	compile 'commons-io:commons-io:2.4'//파일 업로드용,FileUtils
+	compile 'commons-lang:commons-lang:2.6'//myBatis 연동과 관련은 없지만, 빈번하게 사용되는 문자열 라이브러리를 Aapche Commons Lang 로 통일함
+	compile 'commons-logging:commons-logging:1.2'
+	compile 'commons-pool:commons-pool:1.6'
+
+
+
+
+
+	//compile 'commons-logging:commons-logging:1.2'
+	
+	compile 'com.navercorp.lucy:lucy-xss:1.6.3'//태그제거 라이브러리
+	compile 'com.oracle:ojdbc14:10.2.0.4.0'//오라클
+	
+	
+	compile 'egovframework.rte:egovframework.rte.ptl.mvc:3.5.0'
+	//compile ('egovframework.rte:egovframework.rte.ptl.mvc:3.5.0'){//전자정부 프레임워크
+	//	exclude group:'org.apache.logging.log4j', module:'log4j-core'//나는 로그백을 이용할것이므로 이 걸 제거
+	//	exclude group:'org.apache.logging.log4j', module:'log4j-slf4j-impl'//나는 로그백을 이용할것이므로 이 걸 제거
+	//	exclude group:'org.slf4j', module:'log4j-over-slf4j'//나는 로그백을 이용할것이므로 이 걸 제거
+	//}
+	compile 'egovframework.rte:egovframework.rte.psl.dataaccess:3.5.0'
+	compile 'egovframework.rte:egovframework.rte.fdl.idgnr:3.5.0'
+	compile 'egovframework.rte:egovframework.rte.fdl.cmmn:3.5.0'
+	compile 'egovframework.rte:egovframework.rte.fdl.property:3.5.0'
+
+	
+	testCompile 'junit:junit:${version.release}'
+}
+
+eclipse {
+ wtp {
+  facet {
+   facet name: 'jst.web', version: '3.0' // Servlet Spec Version 지정, 미 지정시 2.4
+   facet name: 'jst.java', version: '1.7' // Java Version 지정
+  }
+ }
+
+}
+
+
+// commons-logging, log4j, jul 의존성 제거
+configurations {
+    all.collect { configuration ->
+    //이걸 안넣으면 로그가 이중으로 출력됨. 그것도 정규식이 지정 안된 오리지날 형태로
+        configuration.exclude group: 'commons-logging', module: 'commons-logging'
+        configuration.exclude group: 'log4j', module: 'log4j'
+        //configuration.exclude group: 'log4j', module: 'log4j-core'
+        //configuration.exclude group: 'log4j', module: 'log4j-slf4j-impl'
+        configuration.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        configuration.exclude group: 'org.slf4j', module: 'slf4j-jcl'
+        configuration.exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+        //configuration.exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+}
+//위방법이나 아래방법은 같음. 아래는 전자정부의 로깅 의존성 제거
+configurations {
+    //compile.exclude module: 'commons' // compile configuration에서 특정 모듈 제외
+    //all*.exclude group: 'org.gradle.test.excludes', module: 'reports' // 모든 configuration에서 특정 모듈 제외
+    all*.exclude group: 'org.apache.logging.log4j', module:'log4j-core'// 모든 configuration에서 특정 모듈 제외
+    all*.exclude group: 'org.apache.logging.log4j', module:'log4j-slf4j-impl'// 모든 configuration에서 특정 모듈 제외
+    all*.exclude group: 'org.slf4j', module:'log4j-over-slf4j'// 모든 configuration에서 특정 모듈 제외
+}

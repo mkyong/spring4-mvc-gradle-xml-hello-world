@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 내 예제에서는 이걸 사용 안함 -->
+	<!-- <bean
+		id="jdbcProp"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property
+			name="location"
+			value="classpath:jdbc.properties" />
+	</bean>
+
+	<bean
+		id="syakuSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property
+			name="driverClassName"
+			value="${jdbc.driver}" />
+		<property
+			name="url"
+			value="${jdbc.url}" />
+		<property
+			name="username"
+			value="${jdbc.username}" />
+		<property
+			name="password"
+			value="${jdbc.password}" />
+	</bean>
+
+	<bean
+		id="syakuSqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property
+			name="dataSource"
+			ref="syakuSource" />
+		<property
+			name="configLocation"
+			value="classpath:syaku/mybatis/mybatis-config-base.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:/sql/syaku/**/dao/*Mapper.xml</value>
+			</list>
+		</property>
+	</bean> -->
+
+<!-- com/syaku/bbs/dao/BbsMapper.java 를 찿아서 연결시켜줌 -->
+	<!-- scan for mappers and let them be autowired -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property
+			name="basePackage"
+			value="com.syaku.bbs" />
+		<property
+			name="annotationClass"
+			value="org.springframework.stereotype.Repository" />
+			<!-- 나는 defult 걸 가져다 쓸 것이므로 아래 내용 추가 -->
+		<property
+			name="sqlSessionFactoryBeanName"
+			value="defultSession" />
+	</bean>
+</beans>

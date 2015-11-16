@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig
+PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<!--다음은 정확한 XML헤더를 위한 필수값이다. -->
+<sqlMapConfig>
+	<!--여기서 명시된 파일내 프라퍼티(name=value)는 이 설정파일내 고정자(placeholder)에 의해 사용될수 있다.
+		(이를테면. “${driver}”. 이 파일은 클래스패스에 상대적이고 선택적인 사항이다. -->
+		<!-- <properties url=”file:///c:/config/my.properties” /> -->
+	<properties resource="SqlMapConfigExample.properties " />
+	<!--이 셋팅은 가장 기본적으로는 트랜잭션 관리를 하며 SqlMapClient설정 상세를 제어한다.
+		이것들은 모두 선택적이다. -->
+	<!-- <settings
+		cacheModelsEnabled="true"
+		enhancementEnabled="true"
+		lazyLoadingEnabled="true"
+		maxRequests="128"
+		maxSessions="10"
+		maxTransactions="5"
+		useStatementNamespaces="false"
+		defaultStatementTimeout="5"
+		statementCachingEnabled="true"
+		classInfoCacheEnabled="true"
+		/> -->
+	<!-- 이 요소는 iBATIS가 결과 객체를 생성하기 위해 사용할 factory클래스를 선언한다.
+		이 요소는 선택사항이며 뒷 부분에서 상세하게 설명한다. -->
+<!-- 	<resultObjectFactory type="com.mydomain.MyResultObjectFactory">
+		<property
+			name="someProperty"
+			value="someValue" />
+	</resultObjectFactory> -->
+	<!--긴 전체 경로를 포함한 클래스명을 위한 좀더 짧은 이름을 사용하기 위한 별칭을 타이핑한다. -->
+<!-- 	<typeAlias
+		alias="order"
+		type="testdomain.Order" /> -->
+	<!--SimpleDataSource 를 이용한 SQL Map를 사용하기 위한 데이터소스 설정.
+		6
+		위 자원으로 부터 프라퍼티 사용에 주의. -->
+	<!-- <transactionManager type="JDBC">
+		<dataSource type="SIMPLE">
+			<property
+				name="JDBC.Driver"
+				value="${driver}" />
+			<property
+				name="JDBC.ConnectionURL"
+				value="${url}" />
+			<property
+				name="JDBC.Username"
+				value="${username}" />
+			<property
+				name="JDBC.Password"
+				value="${password}" />
+			<property
+				name="JDBC.DefaultAutoCommit"
+				value="true" />
+			<property
+				name="Pool.MaximumActiveConnections"
+				value="10" />
+			<property
+				name="Pool.MaximumIdleConnections"
+				value="5" />
+			<property
+				name="Pool.MaximumCheckoutTime"
+				value="120000" />
+			<property
+				name="Pool.TimeToWait"
+				value="500" />
+			<property
+				name="Pool.PingQuery"
+				value="select 1 from ACCOUNT" />
+			<property
+				name="Pool.PingEnabled"
+				value="false" />
+			<property
+				name="Pool.PingConnectionsOlderThan"
+				value="1" />
+			<property
+				name="Pool.PingConnectionsNotUsedFor"
+				value="1" />
+		</dataSource>
+	</transactionManager> -->
+	<!--이 SQL map에 의해 로드되는 모든 SQL Map파일을 인식한다. 경로는 클래스패스에 상대적이다. -->
+	<!-- <sqlMap resource="examples/sqlmap/maps/Person.xml" /> -->
+	<!-- <sqlMap url="file:///c:/config/Customer.xml " /> -->
+</sqlMapConfig>

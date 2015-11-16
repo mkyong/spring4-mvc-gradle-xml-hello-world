@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.7.1.201510041102-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/webapp/WEB-INF/context/context-board2.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/Member/servlet/servlet-Member.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-scott-orcl.xml</config>
+		<config>src/main/webapp/WEB-INF/defult/servlet/servlet-defult.xml</config>
+		<config>src/main/webapp/WEB-INF/scott/servlet/servlet-scott.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-aspect.xml</config>
+		<config>src/main/webapp/WEB-INF/miplatform/servlet/servlet-defult.xml</config>
+		<config>src/main/webapp/WEB-INF/daumeditor/servlet/servlet-common.xml</config>
+		<config>src/main/webapp/WEB-INF/sample/servlet/servlet-sample.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-defult-orcl.xml</config>
+		<config>src/main/webapp/WEB-INF/spring-mvc-config.xml</config>
+		<config>src/main/webapp/WEB-INF/first/servlet/servlet-first.xml</config>
+		<config>src/main/webapp/WEB-INF/common/servlet/servlet-common.xml</config>
+		<config>src/main/webapp/WEB-INF/board/servlet/servlet-board.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-defult.xml</config>
+		<config>src/main/webapp/WEB-INF/board2/servlet/servlet-board2.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-page-egov.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

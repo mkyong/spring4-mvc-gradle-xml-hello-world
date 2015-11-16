@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/jdbc  
+                        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+                        http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        ">
+
+<!-- 유저 생성은 defult user create.sql 문서 참조 -->
+	<bean
+		id="scottSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property
+			name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property
+			name="url"
+			value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property
+			name="username"
+			value="scott" />
+		<property
+			name="password"
+			value="test1234" />
+	</bean>
+	
+	    <bean id="scottSqlLog" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="scottSource" />
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE" />
+                <property name="sqlPrefix" value=""/>
+            </bean>
+        </property>
+    </bean>
+
+	<bean
+		id="scottSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property
+			name="dataSource"
+			ref="scottSqlLog" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:/sql/scott/**/sql-*.xml</value>
+				<value>/WEB-INF/sql/scott/**/sql-*.xml</value>
+			</list>
+		</property>
+		<property name="configLocation" value="/WEB-INF/mybatis/scott/mybatis-config.xml" />
+	</bean>
+
+	<bean
+		id="scottTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg
+			index="0"
+			ref="scottSession" />
+	</bean>
+
+</beans>
