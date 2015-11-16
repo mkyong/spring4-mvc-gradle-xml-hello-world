@@ -1,3 +1,10 @@
+나는 mysql 대신 오라클을 사용함
+=============
+jdbc.properties 대신
+WEB-INF/context/context-defult-orcl.xml 사용함
+jdbc.properties 파일은 넣어놓기만 하고  불러오는 태그는 주석처리함
+어느족이 편한지는 상황에 따라 다르므로..
+
 http://syaku.tistory.com/269
 ========
 위 예제 따라하기 위한 브런치

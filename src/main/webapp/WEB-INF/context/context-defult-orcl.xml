@@ -19,6 +19,35 @@
     					http://www.springframework.org/schema/aop/spring-aop.xsd
                         ">
 
+	<!-- mysql용 설정 파일 -->
+	<!-- <bean
+		id="jdbcProp"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property
+		name="location"
+		value="classpath:jdbc.properties" />
+		</bean>
+
+		<bean
+		id="defultSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property
+		name="driverClassName"
+		value="${jdbc.driver}" />
+		<property
+		name="url"
+		value="${jdbc.url}" />
+		<property
+		name="username"
+		value="${jdbc.username}" />
+		<property
+		name="password"
+		value="${jdbc.password}" />
+		</bean> -->
+	<!-- mysql용 설정 파일 -->
+
+	<!-- 오라클용 설정 파일 -->
 	<!-- 유저 생성은 defult user create.sql 문서 참조 -->
 	<bean
 		id="defultSource"
@@ -37,7 +66,8 @@
 			name="password"
 			value="defult" />
 	</bean>
-
+	<!-- 오라클용 설정 파일 -->
+	
 	<bean
 		id="defultSqlLog"
 		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
@@ -59,20 +89,20 @@
 		id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property
-			name="dataSource"
-			ref="defultSqlLog" />
-	</bean> -->
+		name="dataSource"
+		ref="defultSqlLog" />
+		</bean> -->
 
 	<!-- <tx:advice
 		id="txAdvice"
 		transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method
-				name="get*"
-				read-only="true" />
-			<tx:method name="delete*" />
+		<tx:method
+		name="get*"
+		read-only="true" />
+		<tx:method name="delete*" />
 		</tx:attributes>
-	</tx:advice> -->
+		</tx:advice> -->
 	<!--
 		<tx:method> 속성 설명
 
@@ -89,12 +119,12 @@
 
 	<!-- <aop:config>
 		<aop:pointcut
-			id="transactionPointcut"
-			expression="execution(* defult.*(..))" />
+		id="transactionPointcut"
+		expression="execution(* defult.*(..))" />
 		<aop:advisor
-			advice-ref="txAdvice"
-			pointcut-ref="transactionPointcut" />
-	</aop:config> -->
+		advice-ref="txAdvice"
+		pointcut-ref="transactionPointcut" />
+		</aop:config> -->
 
 	<bean
 		id="defultSession"
@@ -104,8 +134,8 @@
 			ref="defultSqlLog" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath*:/sql/**/sql-*.xml</value>
-				<value>/WEB-INF/sql/**/sql-*.xml</value>
+				<value>classpath*:/**/sql/**/sql-*.xml</value>
+				<value>/WEB-INF/**/sql/**/sql-*.xml</value>
 			</list>
 		</property>
 		<property

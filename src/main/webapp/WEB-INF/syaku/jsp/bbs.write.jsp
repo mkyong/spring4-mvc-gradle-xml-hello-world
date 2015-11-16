@@ -8,26 +8,26 @@
 <title>스프링프레임워크 게시판</title>
 </head>
 <body>
-
-	<form id="form">
+	<%@ include file="include/message.jsp"%>
+	<form id="form" method="post" action="./write_ok">
+		<input type="hidden" name="idx" id="idx" value="${object.idx}" />
 		<div>
 			<span>제목</span> <input type="text" id="subject" name="subject"
-				value="" />
+				value="${object.subject}" />
 		</div>
 		<div>
 			<span>작성자</span> <input type="text" id="user_name" name="user_name"
-				value="" />
+				value="${object.user_name}" />
 		</div>
 		<div>
 			<span>내용</span>
-			<textarea id="content" name="content" rows="10" cols="20"></textarea>
+			<textarea id="content" name="content" rows="10" cols="20">${object.content}</textarea>
+		</div>
+
+		<div>
+			<input type="submit" value="save" /> <a href="./">목록</a>
 		</div>
 	</form>
-
-	<div>
-		<button>저장</button>
-		<a href="./">목록</a>
-	</div>
 	<%@ include file="/debug/debug.jsp"%>
 </body>
 </html>

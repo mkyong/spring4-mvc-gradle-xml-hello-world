@@ -81,6 +81,12 @@
 		<appender-ref ref="console" />
 	</logger>
 	<logger
+		name="syaku"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger
 		name="sample"
 		additivity="false">
 		<level value="debug" />

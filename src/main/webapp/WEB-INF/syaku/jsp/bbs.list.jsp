@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,7 @@
 <title>스프링프레임워크 게시판</title>
 </head>
 <body>
+	<%@ include file="include/message.jsp"%>
 	<table border="1">
 		<colgroup>
 			<col width="60">
@@ -25,12 +26,14 @@
 		</thead>
 		<tbody>
 			<!-- 목록이 반복될 영역 -->
-			<tr>
-				<td>번호</td>
-				<td>제목</td>
-				<td>작성자</td>
-				<td>등록일</td>
-			</tr>
+			<c:forEach var="item" items="${list}" varStatus="status">
+				<tr>
+					<td>${item.idx}</td>
+					<td><a href="./${item.idx}">${item.subject}</a></td>
+					<td>${item.user_name}</td>
+					<td>${item.reg_datetime}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<div>
