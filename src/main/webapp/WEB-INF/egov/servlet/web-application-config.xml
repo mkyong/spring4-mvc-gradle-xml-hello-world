@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+ 
+	<!-- 어플리케이션 소스를 스캔하여 로딩 하도록 한다. -->
+	<context:component-scan base-package="org.egovframe.swf.sample.service" />
+  
+	<!-- 편의를 위하여 Spring MVC 설정과 Spring Web Flow 를 위한 설정을 별도록 분리하여 가져오도록 한다.--> 
+	<import resource="webmvc-config.xml" />
+	<import resource="webflow-config.xml" />
+ 
+</beans>

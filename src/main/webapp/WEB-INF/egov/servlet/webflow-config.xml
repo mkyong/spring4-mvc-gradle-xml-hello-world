@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/webflow-config
+           http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd">
+ 
+	<webflow:flow-executor id="flowExecutor" />
+ 
+	<!-- flow 를 정의한 파일을 가져와 flow registry 구성한다. -->
+	<webflow:flow-registry id="flowRegistry"
+		flow-builder-services="flowBuilderServices" base-path="/WEB-INF/egov">
+		<webflow:flow-location-pattern value="/**/*-flow.xml" />
+	</webflow:flow-registry>
+ 
+	<!-- Web Flow views 에  커스터마이징 할 수 있도록 확장하여 사용한다. -->
+	<webflow:flow-builder-services id="flowBuilderServices"
+		view-factory-creator="mvcViewFactoryCreator" conversion-service="conversionService"
+		development="true" />
+ 
+ 
+	<!-- Web Flow 에서  tiles 를 사용할 수 있도록 설정한다. -->
+	<bean id="mvcViewFactoryCreator"
+		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<property name="viewResolvers" ref="tilesViewResolver" />
+	</bean>
+ 
+</beans>

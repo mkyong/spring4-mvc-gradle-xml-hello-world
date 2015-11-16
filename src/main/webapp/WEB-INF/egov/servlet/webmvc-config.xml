@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+	<!--
+	  flowRegistry 에 등록된 flow 와 요청되는 path 와 매핑해주는 역할을 수행한다. 
+		예제에선 요청되는 .../swfHelloWorld/spring/sample/hello  URL 정보를 이용하여 flow 내에서 sample/hello ID로 찾음.
+	-->
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="order" value="0" />
+		<property name="flowRegistry" ref="flowRegistry" />
+	</bean>
+ 
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+		<property name="order" value="1" />
+		<property name="defaultHandler">
+		  <!-- UrlFilenameViewController 는 spring/start 으로 접근하는 path 정보를 이용하여 
+		   View 이름을 추출하여 View 를 반환하게 된다. 여기서는 tiles 의 view 반환하게 된다. -->
+			<bean class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+		</property>
+	</bean>
+ 
+	<!--
+	  Controller 에 의해 반환된 View 명을 tiles 로 보내어 tiles 에 미리 정의된 화면을 보여주도록 한다.
+	-->
+	<bean id="tilesViewResolver" class="org.springframework.js.ajax.AjaxUrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.webflow.mvc.view.FlowAjaxTilesView" />
+	</bean>
+ 
+	<!-- tiles 설정 정보를 정의한다. -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/egov/layouts/layouts.xml</value>
+				<value>/WEB-INF/egov/views.xml</value>
+				<value>/WEB-INF/egov/sample/views.xml</value>
+				<value>/WEB-INF/egov/sample/hello/views.xml</value>
+			</list>
+		</property>
+	</bean>
+ 
+ 
+	<!-- Dispatches requests mapped to POJO @Controllers implementations-->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+ 
+	<!--
+		Dispatches requests mapped to
+		org.springframework.web.servlet.mvc.Controller implementations
+	-->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+ 
+	<!--
+		requests 에 맞는 등록된 FlowHandler 구현부를 연결해준다. 
+	-->
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor" />
+	</bean>
+ 
+	<!-- Custom FlowHandler for the hello flow-->
+	<bean name="sample/hello" class="org.egovframe.web.HelloFlowHandler" />
+ 
+ 
+</beans>
