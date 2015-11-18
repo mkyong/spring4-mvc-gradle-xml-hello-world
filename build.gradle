@@ -39,6 +39,11 @@ dependencies {
 	compile 'org.springframework:spring-orm:4.2.2.RELEASE'
 	compile 'org.springframework:spring-orm:3.2.5.RELEASE'
 	
+	compile 'org.springframework.security:spring-security-web:4.0.3.RELEASE'
+	compile 'org.springframework.security:spring-security-web:3.2.9.RELEASE'
+	compile 'org.springframework.security:spring-security-config:4.0.3.RELEASE'
+
+	
 	compile 'javax.servlet:jstl:1.2'
 	compile 'javax.servlet:javax.servlet-api:3.0.1'
 	compile 'javax.servlet.jsp:jsp-api:2.2'
@@ -114,3 +119,4 @@ configurations {
         configuration.exclude group: 'org.slf4j', module: 'slf4j-jdk14'
     }
 }
+

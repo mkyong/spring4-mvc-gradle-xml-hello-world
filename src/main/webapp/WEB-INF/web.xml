@@ -22,7 +22,6 @@
 			<param-value>utf-8</param-value>
 		</init-param>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -32,27 +31,42 @@
 		<filter-name>XssFilter</filter-name>
 		<filter-class>common.security.XSSFilter</filter-class>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>XssFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- 스프링 보안 필터 -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/security/*</url-pattern>
+	</filter-mapping>
 
-<!-- 	<context-param>
+	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring-core-config.xml</param-value>
-	</context-param> -->
-	
+		</context-param> -->
 
+
+	<!-- 서블릿 파라미터 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/context/context-*.xml</param-value>
 	</context-param>
 
+
 	<!-- For root context -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 스프링 세션 리스너 등록 -->
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
 
 	<!-- For web context -->
@@ -229,6 +243,21 @@
 		<url-pattern>/Member/*</url-pattern>
 	</servlet-mapping>
 
+	<!-- 로그인 예제 -->
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>security</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/security/servlet/servlet-security.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>security</servlet-name>
+		<url-pattern>/security/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>

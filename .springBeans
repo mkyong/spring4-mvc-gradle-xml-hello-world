@@ -11,8 +11,9 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/Member/servlet/servlet-Member.xml</config>
-		<config>src/main/webapp/WEB-INF/context/context-scott-orcl.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-first-orcl.xml</config>
 		<config>src/main/webapp/WEB-INF/defult/servlet/servlet-defult.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-scott-orcl.xml</config>
 		<config>src/main/webapp/WEB-INF/scott/servlet/servlet-scott.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-aspect.xml</config>
 		<config>src/main/webapp/WEB-INF/miplatform/servlet/servlet-defult.xml</config>
@@ -26,6 +27,7 @@
 		<config>src/main/webapp/WEB-INF/context/context-defult.xml</config>
 		<config>src/main/webapp/WEB-INF/board2/servlet/servlet-board2.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-page-egov.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-security.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
