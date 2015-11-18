@@ -8,19 +8,23 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/context/context-board2.xml</config>
+		<config>src/main/webapp/WEB-INF/mkyong/spring-mvc-config.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/Member/servlet/servlet-Member.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-first-orcl.xml</config>
 		<config>src/main/webapp/WEB-INF/defult/servlet/servlet-defult.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-scott-orcl.xml</config>
+		<config>src/main/webapp/WEB-INF/syaku/servlet/servlet-syaku.xml</config>
 		<config>src/main/webapp/WEB-INF/scott/servlet/servlet-scott.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-aspect.xml</config>
 		<config>src/main/webapp/WEB-INF/miplatform/servlet/servlet-defult.xml</config>
 		<config>src/main/webapp/WEB-INF/daumeditor/servlet/servlet-common.xml</config>
 		<config>src/main/webapp/WEB-INF/sample/servlet/servlet-sample.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-defult-orcl.xml</config>
-		<config>src/main/webapp/WEB-INF/spring-mvc-config.xml</config>
+		<config>src/main/webapp/WEB-INF/study/servlet/servlet-login2.xml</config>
+		<config>src/main/webapp/WEB-INF/study/servlet/servlet-study.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-syaku.xml</config>
 		<config>src/main/webapp/WEB-INF/first/servlet/servlet-first.xml</config>
 		<config>src/main/webapp/WEB-INF/common/servlet/servlet-common.xml</config>
 		<config>src/main/webapp/WEB-INF/security/servlet/servlet-security.xml</config>

@@ -55,6 +55,8 @@
 			name="suffix"
 			value=".jsp" />
 	</beans:bean>
+	
+	<!-- <beans:bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /> -->
 
 	<context:component-scan base-package="sample" />
 

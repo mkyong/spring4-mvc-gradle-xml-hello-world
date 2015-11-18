@@ -57,7 +57,7 @@
 
 	<div id="menu">
 		<ol>
-			<li><a href="/defult/sample/">sample home</a></li>
+			<li><a href='<c:url value="sample"/>'>sample home</a></li>
 			<li><a href="sampleController">sampleController</a></li>
 			<li><a href="sampleResponseBody">sampleResponseBody</a></li>
 			<li><a href="sampleResponseBodyList">sampleResponseBodyList</a></li>

@@ -68,6 +68,22 @@
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
+	
+		<!-- For web context -->
+	<servlet>
+		<servlet-name>root</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/servlet-root.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>root</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 
 	<!-- For web context -->
 	<servlet>
@@ -75,14 +91,14 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring-mvc-config.xml</param-value>
+			<param-value>/WEB-INF/mkyong/spring-mvc-config.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>hello-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/mkyong/*</url-pattern>
 	</servlet-mapping>
 
 

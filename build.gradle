@@ -32,6 +32,7 @@ dependencies {
 	compile 'org.springframework:spring-core:4.2.2.RELEASE'
 	compile 'org.springframework:spring-context:4.2.2.RELEASE'
 	compile 'org.springframework:spring-web:4.2.2.RELEASE'
+	compile 'org.springframework:spring-web:3.2.15.RELEASE'
 	compile 'org.springframework:spring-jdbc:4.2.2.RELEASE'//스프링 jdbc 오라클 db연결을 위해 필요 
 	compile 'org.springframework:spring-webmvc:4.2.2.RELEASE'
 	compile 'org.springframework:spring-beans:4.2.2.RELEASE'
