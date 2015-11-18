@@ -23,6 +23,7 @@
 		<config>src/main/webapp/WEB-INF/spring-mvc-config.xml</config>
 		<config>src/main/webapp/WEB-INF/first/servlet/servlet-first.xml</config>
 		<config>src/main/webapp/WEB-INF/common/servlet/servlet-common.xml</config>
+		<config>src/main/webapp/WEB-INF/security/servlet/servlet-security.xml</config>
 		<config>src/main/webapp/WEB-INF/board/servlet/servlet-board.xml</config>
 		<config>src/main/webapp/WEB-INF/context/context-defult.xml</config>
 		<config>src/main/webapp/WEB-INF/board2/servlet/servlet-board2.xml</config>

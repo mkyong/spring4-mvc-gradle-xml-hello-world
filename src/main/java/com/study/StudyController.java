@@ -1,4 +1,4 @@
-package com.login;
+package com.study;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +66,15 @@ public class StudyController {
 		return "submit";
 	}
 
+	/**
+	 * form submit 파일결과 받기
+	 * @param file
+	 */
+	@RequestMapping("/getFile")
+	public void getFile(FileVo file){
+	    System.out.println(file.getFile().getOriginalFilename());
+	}
+	
 	/**
 	 * 가상의 로그인체크 컨트롤러
 	 * 

@@ -11,6 +11,7 @@
 		<li><a href="hello">hello</a></li>
 		<li><a href="form">form</a></li>
 		<li><a href="loginForm">loginForm</a></li>
+		<li><a href="fileForm">fileForm</a></li>
 	</ul>
 	<%@ include file="/debug/debug.jsp"%>
 </body>
