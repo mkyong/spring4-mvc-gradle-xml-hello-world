@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syaku.bbs.dao.BbsMapper">
+
+    <resultMap id="bbsMap" type="com.syaku.bbs.dao.BbsVo">
+        <id     property="idx"    column="idx" />
+        <result property="user_name" column="user_name" />
+        <result property="subject"       column="subject" />
+        <result property="content"       column="content" />
+        <result property="reg_datetime"       column="reg_datetime" />
+    </resultMap>
+
+    <select id="select" resultMap="bbsMap">
+        SELECT  * FROM bbs
+    </select>
+
+    <select id="selectOne" resultMap="bbsMap">
+        SELECT  * FROM bbs WHERE idx = #{idx}
+    </select>
+
+    <insert id="insert">
+         INSERT INTO bbs ( user_name, subject, content, reg_datetime ) VALUES (
+                #{user_name}
+              , #{subject}
+              , #{content}
+              , #{reg_datetime}
+         )
+    </insert>
+
+    <update id="update">
+         UPDATE bbs SET
+              user_name = #{user_name},
+              subject = #{subject},
+              content = #{content},
+              reg_datetime = #{reg_datetime}
+         WHERE idx = #{idx} LIMIT 1
+    </update>
+
+    <delete id="delete">
+         DELETE FROM bbs WHERE idx = #{idx}
+    </delete>
+
+</mapper>

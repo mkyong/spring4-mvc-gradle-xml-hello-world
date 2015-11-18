@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+<!--
+	%p debug, info, warn, error, fatal 등의 priority 가 출력된다.
+	%m 로그내용이 출력됩니다
+	%d 로깅 이벤트가 발생한 시간을 기록합니다.
+	포맷은 %d{HH:mm:ss, SSS}, %d{yyyy MMM dd HH:mm:ss, SSS}같은 형태로 사용하며 SimpleDateFormat에
+	따른 포맷팅을 하면 된다
+	%t 로그이벤트가 발생된 쓰레드의 이름을 출력합니다.
+	%% % 표시를 출력하기 위해 사용한다.
+	%n 플랫폼 종속적인 개행문자가 출력된다. rn 또는 n 일것이다.
+	%c 카테고리를 표시합니다
+	예) 카테고리가 a.b.c 처럼 되어있다면 %c{2}는 b.c가 출력됩니다.
+	%C 클래스명을 포시합니다.
+	예)클래스구조가 org.apache.xyz.SomeClass 처럼 되어있다면 %C{2}는 xyz.SomeClass 가 출력됩니다
+	%F 로깅이 발생한 프로그램 파일명을 나타냅니다.
+	%l 로깅이 발생한 caller의 정보를 나타냅니다
+	%L 로깅이 발생한 caller의 라인수를 나타냅니다
+	%M 로깅이 발생한 method 이름을 나타냅니다.
+	%r 어플리케이션 시작 이후 부터 로깅이 발생한 시점의 시간(milliseconds)
+	%x 로깅이 발생한 thread와 관련된 NDC(nested diagnostic context)를 출력합니다.
+	%X 로깅이 발생한 thread와 관련된 MDC(mapped diagnostic context)를 출력합니다
+	-->
+	
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	<appender name="console-infolog" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %5p:%m%n" />
+		</layout>
+	</appender>
+	<appender name="console-sql" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+	<appender name="console-web" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="common" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	<logger name="sample" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	<logger name="defult" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	<logger name="board2" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	<logger name="board" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	<logger name="scott" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	<logger name="first" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger>
+	
+<!-- 	Query Loggers -->
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console-sql" />
+	</logger>
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console-sql" />
+	</logger>
+	
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+
+	<root>
+		<priority value="off"/>
+		<appender-ref ref="console" />
+	</root>
+	
+	
+</log4j:configuration>

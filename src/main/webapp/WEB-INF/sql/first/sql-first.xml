@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="First">
+	<select
+		id="selectBoardListPaging"
+		parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+        <![CDATA[
+            select
+            	ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM,
+                idx,
+                title,
+                hit_cnt,
+                crea_dtm
+            from
+                tb_board
+            where
+                del_gb = 'N'
+            order by idx desc
+        ]]>
+        <include refid="common.pagingPost"/> 
+	</select>
+	<select
+		id="selectBoardList"
+		parameterType="hashmap"
+		resultType="hashmap">
+        <![CDATA[
+            select
+                idx,
+                title,
+                hit_cnt,
+                crea_dtm
+            from
+                tb_board
+            where
+                del_gb = 'N'
+            order by idx desc
+        ]]>
+	</select>
+	<insert
+		id="insertBoard"
+		parameterType="hashmap">
+		<selectKey
+			keyProperty="IDX"
+			resultType="string"
+			order="BEFORE">
+			SELECT SEQ_TB_BOARD_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+    <![CDATA[
+         
+        INSERT INTO TB_BOARD
+        (
+            IDX,
+            TITLE, 
+            CONTENTS, 
+            HIT_CNT, 
+            DEL_GB, 
+            CREA_DTM, 
+            CREA_ID
+        )
+        VALUES
+        (
+            #{IDX}, 
+            #{TITLE}, 
+            #{CONTENTS}, 
+            0, 
+            'N', 
+            SYSDATE, 
+            'Admin'
+        )
+    ]]>
+	</insert>
+	<update
+		id="updateHitCnt"
+		parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TB_BOARD 
+	        SET
+	            HIT_CNT = NVL(HIT_CNT, 0) + 1
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+
+	<select
+		id="selectBoardDetail"
+		parameterType="hashmap"
+		resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            HIT_CNT,
+	            CREA_ID,
+	            CREA_DTM,
+	            TITLE,
+	            CONTENTS
+	        FROM
+	            TB_BOARD
+	        WHERE
+	            IDX = #{IDX}        
+	    ]]>
+	</select>
+
+	<update
+		id="updateBoard"
+		parameterType="hashmap">
+    <![CDATA[
+        UPDATE TB_BOARD 
+        SET
+            TITLE = #{TITLE},
+            CONTENTS = #{CONTENTS}
+        WHERE
+            IDX = #{IDX}    
+    ]]>
+	</update>
+	<update
+		id="deleteBoard"
+		parameterType="hashmap">
+    <![CDATA[
+        UPDATE TB_BOARD
+        SET
+            DEL_GB = 'Y'
+        WHERE
+            IDX = #{IDX}
+    ]]>
+	</update>
+	<insert
+		id="insertFile"
+		parameterType="hashmap">
+    <![CDATA[
+        INSERT INTO TB_FILE
+        (
+            IDX,
+            BOARD_IDX,
+            ORIGINAL_FILE_NAME,
+            STORED_FILE_NAME,
+            FILE_SIZE,
+            CREA_ID
+        )
+        VALUES
+        (
+            SEQ_TB_FILE_IDX.NEXTVAL,
+            #{BOARD_IDX},
+            #{ORIGINAL_FILE_NAME},
+            #{STORED_FILE_NAME},
+            #{FILE_SIZE},
+            'Admin'
+        )
+    ]]>
+	</insert>
+	<select
+		id="selectFileList"
+		parameterType="hashmap"
+		resultType="hashmap">
+    <![CDATA[
+        SELECT
+            IDX,
+            ORIGINAL_FILE_NAME,
+            ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+        FROM
+            TB_FILE
+        WHERE
+            BOARD_IDX = #{IDX}
+            AND DEL_GB = 'N'
+    ]]>
+	</select>
+	<update
+		id="deleteFileList"
+		parameterType="hashmap">
+    <![CDATA[
+        UPDATE TB_FILE SET
+            DEL_GB = 'Y'
+        WHERE
+            BOARD_IDX = #{IDX}  
+    ]]>
+	</update>
+
+	<update
+		id="updateFile"
+		parameterType="hashmap">
+    <![CDATA[
+        UPDATE TB_FILE SET
+            DEL_GB = 'N'
+        WHERE
+            IDX = #{FILE_IDX}   
+    ]]>
+	</update>
+</mapper>
