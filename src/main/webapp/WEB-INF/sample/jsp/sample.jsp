@@ -62,6 +62,7 @@
 			<li><a href="sampleResponseBody">sampleResponseBody</a></li>
 			<li><a href="sampleResponseBodyList">sampleResponseBodyList</a></li>
 			<li><a href="sampleResponseBodyMap">sampleResponseBodyMap</a></li>
+			<li><a href="exceldown">exceldown</a></li>
 		</ol>
 	</div>
 
@@ -72,6 +73,7 @@
 			<li><a href="sampleResponseBody">sampleResponseBody</a></li>
 			<li><a href="sampleResponseBodyList">sampleResponseBodyList</a></li>
 			<li><a href="sampleResponseBodyMap">sampleResponseBodyMap</a></li>
+			<li><a href="multi">multi</a></li>
 		</ol>
 	</div>
 	<!-- 결과 출력용 -->

@@ -56,4 +56,16 @@ public class SampleService {
 		return map;
 	}
 
+	public List<SampleVO> sampleList() {
+		// TODO Auto-generated method stub
+		List<SampleVO> list=new ArrayList<>();
+		SampleVO vo=null;
+		for (int i = 0; i < 10; i++) {
+			vo=new SampleVO();
+			vo.setId("id"+i);
+			vo.setName("name"+i);
+		}
+		return list;
+	}
+
 }

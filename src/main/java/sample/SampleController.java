@@ -1,6 +1,7 @@
 package sample;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -169,12 +169,51 @@ public class SampleController {
 		mv.setViewName("/xsstest");
 		return mv;
 	}
+
 	@RequestMapping(value = "/{jsp}")
 	// @ResponseBody
 	public String defultJsp(Model model, @PathVariable String jsp) {
 
 		log.info("defultJsp:" + jsp);
-
+		model.addAttribute("title", jsp);
 		return jsp;
-	}	
+	}
+
+	/**
+	 * 미완성
+	 * @param model
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/excel")
+	public ModelAndView excel(Model model, Map<String, Object> map) {
+		log.debug("excel");
+
+		List<SampleVO> list = svc.sampleList();
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("excelDownload");
+		return mav;
+	}
+	
+	/**
+	 * http://snoopy81.tistory.com/327
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/exceldown")
+	 public String excelDownload(Model model){
+	  System.out.println("----- FileDownloadController.excelDownload() -----");
+	  
+	  List<String> list = new ArrayList<String>();
+	  list.add("사이트 관리");
+	  list.add("관리자 관리");
+	  list.add("공통 코드 관리");
+	  list.add("접속 이력");
+	  
+	  model.addAttribute("menuList", list);
+	  
+	  return "excelDownload";
+	 }
 }

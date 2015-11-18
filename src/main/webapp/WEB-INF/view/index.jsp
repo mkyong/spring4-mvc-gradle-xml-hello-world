@@ -9,7 +9,7 @@
 <body>
 	<ul>
 		<li><a href='/'>/</a>의미없음</li>
-<%-- 		<li><a href='<c:url value="/"/>'>/</a></li> --%>
+		<%-- 		<li><a href='<c:url value="/"/>'>/</a></li> --%>
 		<li><a href="mkyong/">mkyong</a></li>
 		<li><a href="defult/">defult</a></li>
 		<li><a href="sample/">sample</a></li>
