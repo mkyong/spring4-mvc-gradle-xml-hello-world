@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 키값 출력용 -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<beans:bean class="common.logger.CustomMapArgumentResolver"></beans:bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<mvc:interceptors>
+		<!-- 로거 출력용 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<beans:bean
+				id="loggerInterceptor"
+				class="common.logger.LoggerInterceptor"></beans:bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin_main" />
+			<!-- 여러개 컨트롤러 추가 가능 -->
+			<!--
+				<mvc:mapping path="/admin_write"/>
+				<mvc:mapping path="/admin_update"/>
+				<mvc:mapping path="/admin_delete"/>
+			-->
+			<!-- 로그인체크 인터셉터 클래스 -->
+			<beans:bean class="com.login.Interceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving
+		up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources
+		mapping="/**"
+		location="/WEB-INF/login/res/" />
+	<mvc:resources
+		mapping="/res/**"
+		location="/res/" />
+	<mvc:resources
+		mapping="/jquery-ui/**"
+		location="/jquery-ui/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property
+			name="prefix"
+			value="/WEB-INF/login/view/" />
+		<beans:property
+			name="suffix"
+			value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan base-package="com.login" />
+
+</beans:beans>
