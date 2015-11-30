@@ -3,7 +3,7 @@ Gradle - Spring 4 MVC Hello World
 Template for Spring 4 MVC + JSP view + XML configuration, using Gradle build tool.
 
 ###1. Technologies used
-* Gradle 2.0
+* Gradle Wrapper
 * Spring 4.1.6.RELEASE
 * JSTL 1.2
 * Logback 1.1.3
