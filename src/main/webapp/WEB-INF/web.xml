@@ -4,7 +4,7 @@
 	version="2.5">
 
 	<display-name>Gradle + Spring MVC Hello World + XML</display-name>
-	<description>Spring MVC web application</description>
+	<description>Spring MVC web application Branch2</description>
 
 	<!-- For web context -->
 	<servlet>
