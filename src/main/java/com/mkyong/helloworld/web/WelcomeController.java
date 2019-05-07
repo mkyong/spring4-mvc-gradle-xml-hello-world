@@ -1,8 +1,4 @@
 package com.mkyong.helloworld.web;
-hgghahgadkfghadfhk
-das
-AutoCloseablearg
-Errorrt
 import java.util.Map;
 
 import org.slf4j.Logger;
