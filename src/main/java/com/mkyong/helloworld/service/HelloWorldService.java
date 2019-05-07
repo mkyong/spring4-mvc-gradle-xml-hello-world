@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.service;
 hello world123
+gsdadfa
+NoClassDefFoundErroradfasdf
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
